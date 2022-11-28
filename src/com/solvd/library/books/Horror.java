@@ -6,4 +6,8 @@ public class Horror extends Book{
     public Horror(String name, String author, int pages) {
         super(name, author, pages);
     }
+
+    public void readBook() {
+        System.out.println("Книга ужасов была прочитана");
+    }
 }

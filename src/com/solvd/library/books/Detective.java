@@ -7,4 +7,7 @@ public class Detective extends Book{
         super(name, author, pages);
     }
 
+    public void readBook() {
+        System.out.println("Детективная книга была прочитана");
+    }
 }

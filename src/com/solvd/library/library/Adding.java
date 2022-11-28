@@ -27,18 +27,21 @@ public class Adding {
         switch (genre) {
             case "детектив" -> {
                 Book book = card.getBooks();
+                book.readBook();
                 System.out.println(book + " сдана");
                 decBook.addDetectiveBook(book);
                 card.setBooks(null);
             }
             case "ужасы" -> {
                 Book book = card.getBooks();
+                book.readBook();
                 System.out.println(book + " сдана");
                 horBook.addHorrorBook(book);
                 card.setBooks(null);
             }
             case "фэнтэзи" -> {
                 Book book = card.getBooks();
+                book.readBook();
                 System.out.println(book + " сдана");
                 fanBook.addFantasyBook(book);
                 card.setBooks(null);

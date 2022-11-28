@@ -6,4 +6,8 @@ public class Adventure extends Book{
     public Adventure(String name, String author, int pages) {
         super(name, author, pages);
     }
+
+    public void readBook() {
+        System.out.println("Книга про приключения была прочитана");
+    }
 }

@@ -1,9 +1,14 @@
 package com.solvd.library.others;
 
-public class Manuals extends Papers {
+public class Manuals extends Papers implements IReading{
 
     public Manuals(String name, String genre) {
         super(genre, name);
+    }
+
+    @Override
+    public void read() {
+        System.out.println("Методичка прочитана");
     }
 
     @Override

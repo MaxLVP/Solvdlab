@@ -32,7 +32,6 @@ public class Card {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
         return person.equals(card.person) && Objects.equals(books, card.books);
@@ -40,7 +39,7 @@ public class Card {
 
     @Override
     public int hashCode() {
-        return Objects.hash(person);
+        return Objects.hash(person, books);
     }
 
     @Override

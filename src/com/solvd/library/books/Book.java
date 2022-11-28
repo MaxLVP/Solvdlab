@@ -1,5 +1,7 @@
 package com.solvd.library.books;
 
+import java.util.Objects;
+
 public abstract class Book {
     private String name;
     private String author;
@@ -33,6 +35,20 @@ public abstract class Book {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    public abstract void readBook();
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return pages == book.pages && Objects.equals(name, book.name) && Objects.equals(author, book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, pages);
     }
 
     @Override

@@ -6,4 +6,8 @@ public class Fantasy extends Book{
     public Fantasy(String name, String author, int pages) {
         super(name, author, pages);
     }
+
+    public void readBook() {
+        System.out.println("Книга про фэнтэзи была прочитана");
+    }
 }

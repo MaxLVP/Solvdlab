@@ -1,9 +1,14 @@
 package com.solvd.library.others;
 
-public class Newspaper extends Papers {
+public class Newspaper extends Papers implements IReading{
 
     public Newspaper(String name, String genre) {
         super(genre, name);
+    }
+
+    @Override
+    public void read() {
+        System.out.println("Журнал прочитан");
     }
 
     @Override
