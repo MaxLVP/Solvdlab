@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class HorrorBooks {
-    private final ArrayList<Book> LIST = new ArrayList<>();
+    private final static ArrayList<Book> LIST = new ArrayList<>();
 
-    public void fillIn() {
+    public static void fillIn() {
         LIST.add(new Horror("Оно", "Стивен Кинг", 340));
         LIST.add(new Horror("Мифы Ктулху", "Говард Лавкрафт", 300));
         LIST.add(new Horror("Мертвая зона", "Стивен Кинг", 400));
@@ -21,11 +21,11 @@ public class HorrorBooks {
         return LIST;
     }
 
-    public void addHorrorBook(Book book) {
+    public static void addHorrorBook(Book book) {
         LIST.add(book);
     }
 
-    public Book chooseHorrorBook() {
+    public static Book chooseHorrorBook() {
         fillIn();
         Random random = new Random();
         int i = random.nextInt(LIST.size() - 1);

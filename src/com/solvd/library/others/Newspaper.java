@@ -7,8 +7,8 @@ public class Newspaper extends Papers implements IReading{
     }
 
     @Override
-    public void read() {
-        System.out.println("Журнал прочитан");
+    public void returnPeriodicals() {
+        System.out.println("Газета " + this.getName() + " возвращена");
     }
 
     @Override

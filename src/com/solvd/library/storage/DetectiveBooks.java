@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class DetectiveBooks {
-    private final ArrayList<Book> LIST = new ArrayList<>();
+    private final static ArrayList<Book> LIST = new ArrayList<>();
 
-    public void fillIn() {
+    public static void fillIn() {
         LIST.add(new Detective("Смерть на Ниле", "Агата Кристи", 340));
         LIST.add(new Detective("Восточный экспресс", "Агата Кристи", 300));
         LIST.add(new Detective("Шерлок Холмс", "Артур Конан Дойл", 400));
@@ -21,14 +21,16 @@ public class DetectiveBooks {
         return LIST;
     }
 
-    public void addDetectiveBook(Book book) {
+    public static void addDetectiveBook(Book book) {
         LIST.add(book);
     }
 
-    public Book chooseDetectiveBook() {
+    public static Book chooseDetectiveBook() {
         fillIn();
         Random random = new Random();
         int i = random.nextInt(LIST.size() - 1);
-        return LIST.get(i);
+        Book book = LIST.get(i);
+        LIST.remove(i);
+        return book;
     }
 }

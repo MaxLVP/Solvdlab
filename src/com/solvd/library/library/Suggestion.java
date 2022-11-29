@@ -2,28 +2,29 @@ package com.solvd.library.library;
 
 import com.solvd.library.books.Book;
 import com.solvd.library.cards.Card;
-import com.solvd.library.storage.DetectiveBooks;
-import com.solvd.library.storage.FantasyBooks;
-import com.solvd.library.storage.HorrorBooks;
+
+import static com.solvd.library.storage.DetectiveBooks.chooseDetectiveBook;
+import static com.solvd.library.storage.FantasyBooks.chooseFantasyBook;
+import static com.solvd.library.storage.HorrorBooks.chooseHorrorBook;
 
 public class Suggestion {
 
-    public Book suggest(Card card, DetectiveBooks decBook, FantasyBooks fanBook, HorrorBooks horBook) {
+    public Book suggest(Card card) {
         if (card.getBooks() == null) {
             String info = card.getPerson().getGenre();
             switch (info) {
                 case "детектив" -> {
-                    Book book = decBook.chooseDetectiveBook();
+                    Book book = chooseDetectiveBook();
                     card.setBooks(book);
                     return book;
                 }
                 case "фэнтэзи" -> {
-                    Book bookF = fanBook.chooseFantasyBook();
+                    Book bookF = chooseFantasyBook();
                     card.setBooks(bookF);
                     return bookF;
                 }
                 case "ужасы" -> {
-                    Book bookH = horBook.chooseHorrorBook();
+                    Book bookH = chooseHorrorBook();
                     card.setBooks(bookH);
                     return bookH;
                 }

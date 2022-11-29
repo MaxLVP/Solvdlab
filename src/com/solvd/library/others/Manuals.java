@@ -7,8 +7,8 @@ public class Manuals extends Papers implements IReading{
     }
 
     @Override
-    public void read() {
-        System.out.println("Методичка прочитана");
+    public void returnPeriodicals() {
+        System.out.println("Методичка " + this.getName() + " возвращена");
     }
 
     @Override

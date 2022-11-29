@@ -1,6 +1,6 @@
 package com.solvd.library.others;
 
-public abstract class Papers {
+public abstract class Papers implements IReading{
     private String topic;
     private String name;
 
@@ -24,4 +24,7 @@ public abstract class Papers {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public void returnPeriodicals() {}
 }

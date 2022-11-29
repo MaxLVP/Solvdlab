@@ -10,10 +10,10 @@ import com.solvd.library.visitors.PersonData;
 
 public class Login {
 
-    public Card login(String phone, DetectiveBooks decBook, FantasyBooks fanBook, HorrorBooks horBook) {
+    public Card login(String phone) {
         PersonData data = new PersonData();
         data.fillInPerson();
         Person person = data.choosePerson(phone);
-        return new CardsData().returnCard(data.getLIST(), person, decBook, fanBook, horBook);
+        return new CardsData().returnCard(data.getLIST(), person);
     }
 }
