@@ -1,30 +1,31 @@
 package com.solvd.library.library;
 
 import com.solvd.library.books.Book;
+import com.solvd.library.books.Genre;
 import com.solvd.library.cards.Card;
 
-import static com.solvd.library.storage.DetectiveBooks.chooseDetectiveBook;
-import static com.solvd.library.storage.FantasyBooks.chooseFantasyBook;
-import static com.solvd.library.storage.HorrorBooks.chooseHorrorBook;
+import java.util.Scanner;
+
+import static com.solvd.library.storage.BooksFactory.chooseBook;
 
 public class Suggestion {
 
     public Book suggest(Card card) {
         if (card.getBooks() == null) {
-            String info = card.getPerson().getGenre();
+            String info = card.getVisitor().getGenre();
             switch (info) {
                 case "детектив" -> {
-                    Book book = chooseDetectiveBook();
+                    Book book = chooseBook(Genre.DETECTIVE);
                     card.setBooks(book);
                     return book;
                 }
                 case "фэнтэзи" -> {
-                    Book bookF = chooseFantasyBook();
+                    Book bookF = chooseBook(Genre.FANTASY);
                     card.setBooks(bookF);
                     return bookF;
                 }
                 case "ужасы" -> {
-                    Book bookH = chooseHorrorBook();
+                    Book bookH = chooseBook(Genre.FANTASTIC);
                     card.setBooks(bookH);
                     return bookH;
                 }
@@ -35,6 +36,13 @@ public class Suggestion {
             }
         }
         System.out.println("У вас уже взята книга, верните предыдующую");
-        return null;
+        System.out.println("Хотите вернуть предуыщую? (да, нет)");
+        Scanner scanner = new Scanner(System.in);
+        if (scanner.nextLine().equals("да")) {
+            return new Adding().returnAndTakeBook(card);
+        }
+        else {
+            return null;
+        }
     }
 }

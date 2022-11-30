@@ -1,10 +1,10 @@
 package com.solvd.library.others;
 
-public abstract class Papers implements IReading{
+public abstract class Periodicals implements IReading{
     private String topic;
     private String name;
 
-    public Papers(String topic, String name) {
+    public Periodicals(String topic, String name) {
         this.topic = topic;
         this.name = name;
     }

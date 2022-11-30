@@ -1,12 +1,12 @@
 package com.solvd.library.books;
 
 public enum Genre {
-    Detective("детектив"),
-    Adventure("приключения"),
-    Fantastic("фантастика"),
-    Fantasy("фэнтэзи"),
-    Horror("ужасы"),
-    Science("наука");
+    DETECTIVE("детектив"),
+    ADVENTURE("приключения"),
+    FANTASTIC("фантастика"),
+    FANTASY("фэнтэзи"),
+    HORROR("ужасы"),
+    SCIENCE("наука");
 
     private final String genre;
 

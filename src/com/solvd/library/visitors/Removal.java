@@ -1,9 +1,11 @@
 package com.solvd.library.visitors;
 
+import static com.solvd.library.visitors.PersonData.removePerson;
+
 public class Removal {
 
-    public Person remove(Person person) {
-        System.out.println("Пользователь с телефоном: " + person.getPhone() + " удален");
+    public Visitor remove(Visitor person) {
+        removePerson(person);
         return person;
     }
 }

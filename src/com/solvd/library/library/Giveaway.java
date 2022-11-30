@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Giveaway {
 
-    public Papers giveaway() {
+    public Periodicals giveaway() {
         System.out.println("Что вы хотите получить? (газета, комикс, журнал, методичка)");
         Scanner scanner = new Scanner(System.in);
         String type = "";
@@ -16,7 +16,7 @@ public class Giveaway {
         } else {
             System.out.println("Вы не ввели что хотите получить");
         }
-        Papers paper;
+        Periodicals paper;
         switch (type) {
             case "газета" -> paper = giveNewspaper();
             case "методичка" -> paper = giveManual();

@@ -5,9 +5,7 @@ import com.solvd.library.cards.Card;
 
 import java.util.Scanner;
 
-import static com.solvd.library.storage.DetectiveBooks.addDetectiveBook;
-import static com.solvd.library.storage.FantasyBooks.addFantasyBook;
-import static com.solvd.library.storage.HorrorBooks.addHorrorBook;
+import static com.solvd.library.storage.BooksFactory.addBook;
 
 public class Adding {
 
@@ -24,29 +22,10 @@ public class Adding {
     }
 
     public void returnBook(Card card) {
-        String genre = card.getPerson().getGenre();
-        switch (genre) {
-            case "детектив" -> {
-                Book book = card.getBooks();
-                book.readBook();
-                System.out.println(book + " сдана");
-                addDetectiveBook(book);
-                card.setBooks(null);
-            }
-            case "ужасы" -> {
-                Book book = card.getBooks();
-                book.readBook();
-                System.out.println(book + " сдана");
-                addHorrorBook(book);
-                card.setBooks(null);
-            }
-            case "фэнтэзи" -> {
-                Book book = card.getBooks();
-                book.readBook();
-                System.out.println(book + " сдана");
-                addFantasyBook(book);
-                card.setBooks(null);
-            }
-        }
+        Book book = card.getBooks();
+        addBook(book);
+        book.readBook();
+        System.out.println(book + " сдана");
+        card.setBooks(null);
     }
 }

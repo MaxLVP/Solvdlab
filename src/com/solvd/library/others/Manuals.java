@@ -1,6 +1,6 @@
 package com.solvd.library.others;
 
-public class Manuals extends Papers implements IReading{
+public class Manuals extends Periodicals implements IReading{
 
     public Manuals(String name, String genre) {
         super(genre, name);

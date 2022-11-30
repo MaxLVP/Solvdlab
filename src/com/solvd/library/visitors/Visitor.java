@@ -2,13 +2,13 @@ package com.solvd.library.visitors;
 
 import java.util.Objects;
 
-public class Person {
+public class Visitor {
     private String name;
     private String phone;
     private String secondName;
     private String genre;
 
-    public Person(String name, String phone, String secondName, String genre) {
+    public Visitor(String name, String phone, String secondName, String genre) {
         this.name = name;
         this.phone = phone;
         this.secondName = secondName;
@@ -50,7 +50,7 @@ public class Person {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
+        Visitor person = (Visitor) o;
         return Objects.equals(name, person.name) && Objects.equals(phone, person.phone) && Objects.equals(secondName, person.secondName) && Objects.equals(genre, person.genre);
     }
 

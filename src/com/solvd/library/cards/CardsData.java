@@ -1,39 +1,34 @@
 package com.solvd.library.cards;
 
+import com.solvd.library.books.Genre;
 import com.solvd.library.others.Comics;
-import com.solvd.library.others.Papers;
-import com.solvd.library.storage.DetectiveBooks;
-import com.solvd.library.storage.FantasyBooks;
-import com.solvd.library.storage.HorrorBooks;
-import com.solvd.library.visitors.Person;
+import com.solvd.library.visitors.Visitor;
 
 import java.util.ArrayList;
 
-import static com.solvd.library.storage.DetectiveBooks.chooseDetectiveBook;
-import static com.solvd.library.storage.FantasyBooks.chooseFantasyBook;
-import static com.solvd.library.storage.HorrorBooks.chooseHorrorBook;
+import static com.solvd.library.storage.BooksFactory.chooseBook;
 
 public class CardsData {
     private final ArrayList<Card> LIST = new ArrayList<>();
 
-    public void fillInCard(ArrayList<Person> persons) {
+    public void fillInCard(ArrayList<Visitor> persons) {
         Comics papers = new Comics("name", "genre");
-        for (Person person : persons) {
+        for (Visitor person : persons) {
             switch (person.getGenre()) {
                 case "детектив":
-                    LIST.add(new Card(person, chooseDetectiveBook(), papers));
+                    LIST.add(new Card(person, chooseBook(Genre.DETECTIVE), papers));
                 case "ужасы":
-                    LIST.add(new Card(person, chooseHorrorBook(), papers));
+                    LIST.add(new Card(person, chooseBook(Genre.HORROR), papers));
                 case "фэнтэзи":
-                    LIST.add(new Card(person, chooseFantasyBook(), papers));
+                    LIST.add(new Card(person, chooseBook(Genre.FANTASY), papers));
             }
         }
     }
 
-    public Card returnCard(ArrayList<Person> persons, Person person) {
+    public Card returnCard(ArrayList<Visitor> persons, Visitor person) {
         fillInCard(persons);
         for (Card card : LIST) {
-            if (card.getPerson().equals(person)) {
+            if (card.getVisitor().equals(person)) {
                 return card;
             }
         }

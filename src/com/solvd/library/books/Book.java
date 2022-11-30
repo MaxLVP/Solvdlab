@@ -2,15 +2,17 @@ package com.solvd.library.books;
 
 import java.util.Objects;
 
-public abstract class Book {
+public class Book {
     private String name;
     private String author;
     private int pages;
+    private Genre genre;
 
-    public Book(String name, String author, int pages) {
+    public Book(String name, String author, int pages, Genre genre) {
         this.name = name;
         this.author = author;
         this.pages = pages;
+        this.genre = genre;
     }
 
     public String getName() {
@@ -37,7 +39,17 @@ public abstract class Book {
         this.pages = pages;
     }
 
-    public abstract void readBook();
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public void readBook() {
+
+    };
 
     @Override
     public boolean equals(Object o) {

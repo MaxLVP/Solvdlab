@@ -2,26 +2,25 @@ package com.solvd.library;
 
 import com.solvd.library.authentificaation.Auth;
 import com.solvd.library.books.Book;
-import com.solvd.library.books.Genre;
 import com.solvd.library.cards.Card;
 import com.solvd.library.library.Adding;
 import com.solvd.library.library.Giveaway;
 import com.solvd.library.library.Suggestion;
-import com.solvd.library.others.Papers;
-import com.solvd.library.storage.DetectiveBooks;
-import com.solvd.library.storage.FantasyBooks;
-import com.solvd.library.storage.HorrorBooks;
-import com.solvd.library.visitors.Person;
+import com.solvd.library.others.Periodicals;
+import com.solvd.library.visitors.Visitor;
 import com.solvd.library.visitors.Removal;
 
 import java.util.Scanner;
 
+import static com.solvd.library.storage.BooksFactory.fillInStorage;
+
 public class Main {
     public static void main(String[] args) {
+        fillInStorage();
         Removal remove = new Removal();
         System.out.println("Добро пожаловать");
         Card card = new Auth().auth();
-        System.out.println("В систему вошел пользователь: " + card.getPerson());
+        System.out.println("В систему вошел пользователь: " + card.getVisitor());
         System.out.println(card);
         System.out.println("Что вы хотите сделать?");
         System.out.println("1. Взять книгу ");
@@ -35,7 +34,7 @@ public class Main {
             case 1:
                 Book book = new Suggestion().suggest(card);
                 if (book == null) {
-                    System.out.println("Пользователю " + card.getPerson().getName() + " ничего не выдано");
+                    System.out.println("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
                 }
                 else {
                     System.out.println("Взята " + book);
@@ -45,7 +44,7 @@ public class Main {
             case 2:
                 Book books = new Adding().returnAndTakeBook(card);
                 if (books == null) {
-                    System.out.println("Пользователю " + card.getPerson().getName() + " ничего не выдано");
+                    System.out.println("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
                 }
                 else {
                     System.out.println("Взята " + books);
@@ -53,16 +52,16 @@ public class Main {
                 System.out.println(card);
                 break;
             case 3:
-                Papers paper = new Giveaway().giveaway();
+                Periodicals paper = new Giveaway().giveaway();
                 if (paper == null) {
-                    System.out.println("Пользователю " + card.getPerson().getName() + " ничего не выдано");
+                    System.out.println("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
                 }
                 else {
-                    System.out.println("Пользователю " + card.getPerson().getName() + " выдано: " + paper);
+                    System.out.println("Пользователю " + card.getVisitor().getName() + " выдано: " + paper);
                 }
                 break;
             case 4:
-                Person person = remove.remove(card.getPerson());
+                Visitor person = remove.remove(card.getVisitor());
                 break;
             case 5:
                 if (card.getPapers() == null) {

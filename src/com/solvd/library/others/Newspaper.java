@@ -1,6 +1,6 @@
 package com.solvd.library.others;
 
-public class Newspaper extends Papers implements IReading{
+public class Newspaper extends Periodicals implements IReading{
 
     public Newspaper(String name, String genre) {
         super(genre, name);
