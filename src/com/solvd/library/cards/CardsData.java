@@ -15,12 +15,9 @@ public class CardsData {
         Comics papers = new Comics("name", "genre");
         for (Visitor person : persons) {
             switch (person.getGenre()) {
-                case "детектив":
-                    LIST.add(new Card(person, chooseBook(Genre.DETECTIVE), papers));
-                case "ужасы":
-                    LIST.add(new Card(person, chooseBook(Genre.HORROR), papers));
-                case "фэнтэзи":
-                    LIST.add(new Card(person, chooseBook(Genre.FANTASY), papers));
+                case "детектив" -> LIST.add(new Card(person, chooseBook(Genre.DETECTIVE), papers));
+                case "ужасы" -> LIST.add(new Card(person, chooseBook(Genre.HORROR), papers));
+                case "фэнтэзи" -> LIST.add(new Card(person, chooseBook(Genre.FANTASY), papers));
             }
         }
     }

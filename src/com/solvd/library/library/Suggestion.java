@@ -25,7 +25,7 @@ public class Suggestion {
                     return bookF;
                 }
                 case "ужасы" -> {
-                    Book bookH = chooseBook(Genre.FANTASTIC);
+                    Book bookH = chooseBook(Genre.HORROR);
                     card.setBooks(bookH);
                     return bookH;
                 }

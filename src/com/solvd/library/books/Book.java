@@ -47,8 +47,8 @@ public class Book {
         this.genre = genre;
     }
 
-    public void readBook() {
-
+    public final void readBook() {
+        System.out.println("Книга " + this.name + " была прочитана.");
     };
 
     @Override

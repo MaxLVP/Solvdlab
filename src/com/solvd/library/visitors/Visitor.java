@@ -2,7 +2,7 @@ package com.solvd.library.visitors;
 
 import java.util.Objects;
 
-public class Visitor {
+public final class Visitor {
     private String name;
     private String phone;
     private String secondName;

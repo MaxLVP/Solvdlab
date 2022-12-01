@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class BooksFactory {
-    private final static ArrayList<Book> BOOK_LIST= new ArrayList<>();
+    private final static ArrayList<Book> BOOK_LIST = new ArrayList<>();
 
     public static void fillInStorage() {
         BOOK_LIST.add(new Book("Смерть на Ниле", "Агата Кристи", 340, Genre.DETECTIVE));
@@ -38,12 +38,12 @@ public class BooksFactory {
     public static Book chooseBook(Genre genre) {
         Random random = new Random();
         ArrayList<Book> genreBooks = new ArrayList<>();
-        for (Book book: BOOK_LIST) {
+        for (Book book : BOOK_LIST) {
             if (book.getGenre() == genre) {
                 genreBooks.add(book);
             }
         }
-        int i = random.nextInt(genreBooks.size() - 1);
+        int i = random.nextInt(genreBooks.size());
         Book book = genreBooks.get(i);
         BOOK_LIST.remove(book);
         return book;

@@ -6,11 +6,7 @@ public class PersonData {
     private final static ArrayList<Visitor> LIST = new ArrayList<>();
 
     public void fillInPerson() {
-        LIST.add(new Visitor("Адам", "+325698", "Невилл", "фэнтэзи"));
         LIST.add(new Visitor("Стивен", "+123456", "Кинг", "ужасы"));
-        LIST.add(new Visitor("Гари", "+987456", "Дойл", "детектив"));
-        LIST.add(new Visitor("Джон", "+456231", "Хиг", "фэнтэзи"));
-        LIST.add(new Visitor("Джейми", "+654123", "Спенсер", "детектив"));
     }
 
     public ArrayList<Visitor> getLIST() {
