@@ -16,18 +16,18 @@ public class Giveaway {
         } else {
             System.out.println("Вы не ввели что хотите получить");
         }
-        Periodicals paper;
+        Periodicals periodical;
         switch (type) {
-            case "газета" -> paper = giveNewspaper();
-            case "методичка" -> paper = giveManual();
-            case "комикс" -> paper = giveComics();
-            case "журнал" -> paper = giveMagazine();
+            case "газета" -> periodical = giveNewspaper();
+            case "методичка" -> periodical = giveManual();
+            case "комикс" -> periodical = giveComics();
+            case "журнал" -> periodical = giveMagazine();
             default -> {
-                paper = null;
+                periodical = null;
                 System.out.println("Введено неправильно наименование");
             }
         }
-        return paper;
+        return periodical;
     }
 
     public ArrayList<String> getInfo() {
@@ -39,7 +39,6 @@ public class Giveaway {
             info.add(current);
             current = scanner.nextLine();
         }
-        scanner.close();
         return info;
     }
 

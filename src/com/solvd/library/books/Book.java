@@ -3,10 +3,10 @@ package com.solvd.library.books;
 import java.util.Objects;
 
 public class Book {
-    private String name;
-    private String author;
-    private int pages;
-    private Genre genre;
+    private final String name;
+    private final String author;
+    private final int pages;
+    private final Genre genre;
 
     public Book(String name, String author, int pages, Genre genre) {
         this.name = name;
@@ -19,37 +19,21 @@ public class Book {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getAuthor() {
         return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public int getPages() {
         return pages;
     }
 
-    public void setPages(int pages) {
-        this.pages = pages;
-    }
-
     public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
     public final void readBook() {
         System.out.println("Книга " + this.name + " была прочитана.");
-    };
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -65,7 +49,9 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Книга под названием: '" + name + '\'' +
-                ", автор: '" + author + '\'' ;
+        return "Книга под названием: '" + this.getName() + '\'' +
+                ", автор: '" + this.getAuthor() + '\'' +
+                ", жанр: '" + genre.getGenre() + '\'' +
+                ", количество страниц: " + this.getPages();
     }
 }

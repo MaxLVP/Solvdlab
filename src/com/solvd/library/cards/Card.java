@@ -6,8 +6,8 @@ import com.solvd.library.visitors.Visitor;
 
 import java.util.Objects;
 
-public class Card {
-    private Visitor visitor;
+public final class Card {
+    private final Visitor visitor;
     private Book books;
     private Periodicals periodicals;
 
@@ -21,10 +21,6 @@ public class Card {
         return visitor;
     }
 
-    public void setVisitor(Visitor visitor) {
-        this.visitor = visitor;
-    }
-
     public Book getBooks() {
         return books;
     }
@@ -33,11 +29,11 @@ public class Card {
         this.books = books;
     }
 
-    public Periodicals getPapers() {
+    public Periodicals getPeriodicals() {
         return periodicals;
     }
 
-    public void setPapers(Periodicals periodicals) {
+    public void setPeriodicals(Periodicals periodicals) {
         this.periodicals = periodicals;
     }
 
@@ -56,15 +52,25 @@ public class Card {
 
     @Override
     public String toString() {
-        if (this.books == null) {
+        if (this.books == null & this.periodicals != null) {
             return "Карточка посетителя: " +
                     "пользователь " + visitor.getName() +
                     ", взятых книг нет " +
-                    "взятая периодика: " + periodicals;
+                    ", взятая периодика: " + periodicals;
+        } else if (this.books != null & this.periodicals == null) {
+            return "Карточка посетителя: " +
+                    "пользователь " + visitor.getName() +
+                    ", взятые книги: " + books +
+                    ", взятой периодики нет ";
+        } else if (this.books == null & this.periodicals == null) {
+            return "Карточка посетителя: " +
+                    "пользователь " + visitor.getName() +
+                    ", взятых книг нет " +
+                    ", взятой периодики нет ";
         }
         return "Карточка посетителя: " +
                 "пользователь " + visitor.getName() +
                 ", взятые книги: " + books +
-                "взятая периодика: " + periodicals;
+                ", взятая периодика: " + periodicals;
     }
 }
