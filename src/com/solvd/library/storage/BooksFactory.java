@@ -37,10 +37,6 @@ public class BooksFactory {
         BOOK_LIST.add(new Book("Темная башня", "Стивен Кинг", 450, Genre.FANTASTIC));
     }
 
-    public static ArrayList<Book> getBookList() {
-        return BOOK_LIST;
-    }
-
     public static void addBook(Book book) {
         BOOK_LIST.add(book);
     }

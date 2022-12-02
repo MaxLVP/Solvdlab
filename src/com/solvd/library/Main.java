@@ -76,10 +76,12 @@ public class Main {
                         exit = true;
                         System.out.println("Всего хорошего");
                     }
+                    break;
                 case 6:
                     changeVisitorData(card.getVisitor());
                     System.out.println("Данные изменены");
                     System.out.println(card.getVisitor());
+                    break;
             }
         }
         System.out.println("");

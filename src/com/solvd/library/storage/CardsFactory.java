@@ -1,13 +1,14 @@
-package com.solvd.library.cards;
+package com.solvd.library.storage;
 
 import com.solvd.library.books.Genre;
+import com.solvd.library.cards.Card;
 import com.solvd.library.visitors.Visitor;
 
 import java.util.ArrayList;
 
 import static com.solvd.library.storage.BooksFactory.chooseBook;
 
-public class CardsData {
+public class CardsFactory {
     private final ArrayList<Card> LIST = new ArrayList<>();
 
     public void fillInCard(ArrayList<Visitor> persons) {

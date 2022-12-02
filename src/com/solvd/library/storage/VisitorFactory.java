@@ -1,11 +1,13 @@
-package com.solvd.library.visitors;
+package com.solvd.library.storage;
+
+import com.solvd.library.visitors.Visitor;
 
 import java.util.ArrayList;
 
-public class PersonData {
+public class VisitorFactory {
     private final static ArrayList<Visitor> LIST = new ArrayList<>();
 
-    public void fillInPerson() {
+    public void fillInVisitors() {
         LIST.add(new Visitor("Стивен", "+123456", "Кинг", "ужасы"));
     }
 
@@ -13,15 +15,15 @@ public class PersonData {
         return LIST;
     }
 
-    public static Visitor addPerson(Visitor person) {
-        LIST.add(person);
-        return person;
+    public static Visitor addVisitor(Visitor visitor) {
+        LIST.add(visitor);
+        return visitor;
     }
 
-    public static void removePerson(Visitor person) {
+    public static void removeVisitor(Visitor visitor) {
         for (Visitor persons : LIST) {
-            if (person.getPhone().equals(persons.getPhone())) {
-                LIST.remove(person);
+            if (visitor.getPhone().equals(persons.getPhone())) {
+                LIST.remove(visitor);
                 System.out.println("Пользователь удален");
             }
             else {
@@ -30,10 +32,10 @@ public class PersonData {
         }
     }
 
-    public Visitor choosePerson(String phone) {
-        for (Visitor person : LIST) {
-            if (person.getPhone().equals(phone)) {
-                return person;
+    public Visitor chooseVisitor(String phone) {
+        for (Visitor visitor : LIST) {
+            if (visitor.getPhone().equals(phone)) {
+                return visitor;
             }
         }
         return null;

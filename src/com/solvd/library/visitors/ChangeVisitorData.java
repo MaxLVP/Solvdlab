@@ -21,9 +21,9 @@ public class ChangeVisitorData {
                 return visitor;
             }
             case "жанр" -> {
-                System.out.println("Введите новый жанр");
+                System.out.println("Введите новый жанр (ужасы, детектив, приключения, фантастика, фэнтэзи)");
                 String genre = scanner.nextLine();
-                visitor.setPhone(genre);
+                visitor.setGenre(genre);
                 return visitor;
             }
             default -> {

@@ -5,7 +5,7 @@ import com.solvd.library.visitors.Visitor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static com.solvd.library.visitors.PersonData.addPerson;
+import static com.solvd.library.storage.VisitorFactory.addVisitor;
 
 public class Registration {
 
@@ -19,7 +19,7 @@ public class Registration {
             current = scanner.nextLine();
         }
         Visitor person = new Visitor(info.get(0), phone, info.get(1), info.get(2));
-        addPerson(person);
+        addVisitor(person);
         System.out.println("Пользователь " + person.getName() + " " + person.getSecondName() + " " +
                 "зарегистрирован, номер телефона: " + person.getPhone());
         return person;

@@ -3,9 +3,9 @@ package com.solvd.library.visitors;
 import java.util.Objects;
 
 public final class Visitor {
-    private String name;
+    private final String name;
     private String phone;
-    private String secondName;
+    private final String secondName;
     private String genre;
 
     public Visitor(String name, String phone, String secondName, String genre) {
@@ -17,10 +17,6 @@ public final class Visitor {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhone() {
@@ -35,15 +31,11 @@ public final class Visitor {
         return secondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
     public String getGenre() {
         return genre;
     }
 
-    public void setGenre(String setGenre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
