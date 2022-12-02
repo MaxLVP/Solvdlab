@@ -1,6 +1,10 @@
 package com.solvd.library.others;
 
 public class Comics extends Periodicals implements IReading {
+    static {
+        String typeName = "Комикс";
+        System.out.println("Получен " + typeName);
+    }
 
     public Comics(String name, String genre) {
         super(genre, name);
@@ -8,7 +12,7 @@ public class Comics extends Periodicals implements IReading {
 
     @Override
     public void returnPeriodicals() {
-        System.out.println("Комикс " + this.getName() + " возвращен");
+        System.out.println(this.getName() + " возвращен");
     }
 
     @Override
