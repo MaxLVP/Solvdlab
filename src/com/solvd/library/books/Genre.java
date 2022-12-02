@@ -5,8 +5,7 @@ public enum Genre {
     ADVENTURE("приключения"),
     FANTASTIC("фантастика"),
     FANTASY("фэнтэзи"),
-    HORROR("ужасы"),
-    SCIENCE("наука");
+    HORROR("ужасы");
 
     private final String genre;
 

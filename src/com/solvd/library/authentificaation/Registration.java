@@ -10,7 +10,7 @@ import static com.solvd.library.visitors.PersonData.addPerson;
 public class Registration {
 
     public Visitor register(String phone) {
-        System.out.println("Введите имя, фамилию и предпочитаемый жанр");
+        System.out.println("Введите имя, фамилию и предпочитаемый жанр (ужасы, детектив, приключения, фантастика, фэнтэзи)");
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> info = new ArrayList<>();
         String current = scanner.nextLine();

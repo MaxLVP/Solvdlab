@@ -25,6 +25,16 @@ public class BooksFactory {
         BOOK_LIST.add(new Book("Мертвая зона", "Стивен Кинг", 400, Genre.HORROR));
         BOOK_LIST.add(new Book("Красный дракон", "Томас Харрис", 500, Genre.HORROR));
         BOOK_LIST.add(new Book("Ритуал", "Адам Нэвилл", 250, Genre.HORROR));
+        BOOK_LIST.add(new Book("Три мушкетера", "Александр Дюма", 800, Genre.ADVENTURE));
+        BOOK_LIST.add(new Book("Робинзон Крузо", "Даниэль Дефо", 500, Genre.ADVENTURE));
+        BOOK_LIST.add(new Book("Таинственный остров", "Жюль Верн", 400, Genre.ADVENTURE));
+        BOOK_LIST.add(new Book("Приключения Тома Сойера", "Марк Твен", 600, Genre.ADVENTURE));
+        BOOK_LIST.add(new Book("Алиса в Зазеркалье", "Льюис Кэрролл", 450, Genre.ADVENTURE));
+        BOOK_LIST.add(new Book("451 градус по Фаренгейту", "Рэй Бэдберри", 400, Genre.FANTASTIC));
+        BOOK_LIST.add(new Book("Машина времени", "Герберт Уэллс", 500, Genre.FANTASTIC));
+        BOOK_LIST.add(new Book("Цветы для Элджерона", "Дэниал Киз", 400, Genre.FANTASTIC));
+        BOOK_LIST.add(new Book("Путешествие к центру Земли", "Жюль Верн", 500, Genre.FANTASTIC));
+        BOOK_LIST.add(new Book("Темная башня", "Стивен Кинг", 450, Genre.FANTASTIC));
     }
 
     public static ArrayList<Book> getBookList() {

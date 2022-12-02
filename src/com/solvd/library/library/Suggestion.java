@@ -20,14 +20,24 @@ public class Suggestion {
                     return book;
                 }
                 case "фэнтэзи" -> {
-                    Book bookF = chooseBook(Genre.FANTASY);
-                    card.setBooks(bookF);
-                    return bookF;
+                    Book book = chooseBook(Genre.FANTASY);
+                    card.setBooks(book);
+                    return book;
                 }
                 case "ужасы" -> {
-                    Book bookH = chooseBook(Genre.HORROR);
-                    card.setBooks(bookH);
-                    return bookH;
+                    Book book = chooseBook(Genre.HORROR);
+                    card.setBooks(book);
+                    return book;
+                }
+                case "приключения" -> {
+                    Book book = chooseBook(Genre.ADVENTURE);
+                    card.setBooks(book);
+                    return book;
+                }
+                case "фантастика" -> {
+                    Book book = chooseBook(Genre.FANTASTIC);
+                    card.setBooks(book);
+                    return book;
                 }
                 default -> {
                     System.out.println("Введено неправильно наименование");

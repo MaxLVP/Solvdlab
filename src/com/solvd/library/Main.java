@@ -13,6 +13,7 @@ import com.solvd.library.visitors.Removal;
 import java.util.Scanner;
 
 import static com.solvd.library.storage.BooksFactory.fillInStorage;
+import static com.solvd.library.visitors.ChangeVisitorData.changeVisitorData;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,6 +31,7 @@ public class Main {
             System.out.println("3. Взять журнал, газету или комиксы ");
             System.out.println("4. Удалить себя из базы данных ");
             System.out.println("5. Уйти из библиотеки");
+            System.out.println("6. Изменить данные");
             Scanner scan = new Scanner(System.in);
             int i = scan.nextInt();
             switch (i) {
@@ -74,6 +76,10 @@ public class Main {
                         exit = true;
                         System.out.println("Всего хорошего");
                     }
+                case 6:
+                    changeVisitorData(card.getVisitor());
+                    System.out.println("Данные изменены");
+                    System.out.println(card.getVisitor());
             }
         }
         System.out.println("");
