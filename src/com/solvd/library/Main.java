@@ -35,7 +35,7 @@ public class Main {
             Scanner scan = new Scanner(System.in);
             int i = scan.nextInt();
             switch (i) {
-                case 1:
+                case 1 -> {
                     Book book = new Suggestion().suggest(card);
                     if (book == null) {
                         System.out.println("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
@@ -43,8 +43,8 @@ public class Main {
                         System.out.println("Взята " + book);
                     }
                     System.out.println(card);
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     Book books = new Adding().returnAndTakeBook(card);
                     if (books == null) {
                         System.out.println("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
@@ -52,8 +52,8 @@ public class Main {
                         System.out.println("Взята " + books);
                     }
                     System.out.println(card);
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     Periodicals periodical = new Giveaway().giveaway();
                     if (periodical == null) {
                         System.out.println("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
@@ -62,29 +62,26 @@ public class Main {
                         card.setPeriodicals(periodical);
                         System.out.println(card);
                     }
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     Visitor person = remove.remove(card.getVisitor());
-                    break;
-                case 5:
-                    if (card.getPeriodicals() == null) {
-                        exit = true;
-                        System.out.println("Всего хорошего");
-                    } else {
+                    System.out.println("Пользователь с номером телефона " + person.getPhone() + " удален");
+                }
+                case 5 -> {
+                    if (card.getPeriodicals() != null) {
                         System.out.println("У вас не сдана периодика " + card.getPeriodicals().getName());
                         card.getPeriodicals().returnPeriodicals();
-                        exit = true;
-                        System.out.println("Всего хорошего");
                     }
-                    break;
-                case 6:
+                    exit = true;
+                    System.out.println("Всего хорошего");
+                }
+                case 6 -> {
                     changeVisitorData(card.getVisitor());
                     System.out.println("Данные изменены");
                     System.out.println(card.getVisitor());
-                    break;
+                }
             }
         }
-        System.out.println("");
         System.out.println("Выход из программы");
     }
 }
