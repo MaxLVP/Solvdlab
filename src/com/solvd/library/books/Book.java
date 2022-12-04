@@ -3,10 +3,10 @@ package com.solvd.library.books;
 import java.util.Objects;
 
 public class Book {
-    private final String name;
-    private final String author;
-    private final int pages;
-    private final Genre genre;
+    private String name;
+    private String author;
+    private int pages;
+    private Genre genre;
 
     public Book(String name, String author, int pages, Genre genre) {
         this.name = name;
