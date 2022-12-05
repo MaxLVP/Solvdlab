@@ -7,18 +7,18 @@ import com.solvd.library.visitors.Visitor;
 import java.util.Objects;
 
 public final class Card {
-    private final Visitor visitor;
+    private final Visitor VISITOR;
     private Book books;
     private Periodicals periodicals;
 
     public Card(Visitor person, Book books, Periodicals periodicals) {
-        this.visitor = person;
+        this.VISITOR = person;
         this.books = books;
         this.periodicals = periodicals;
     }
 
     public Visitor getVisitor() {
-        return visitor;
+        return VISITOR;
     }
 
     public Book getBooks() {
@@ -42,34 +42,34 @@ public final class Card {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return visitor.equals(card.visitor) && Objects.equals(books, card.books) && Objects.equals(periodicals, card.periodicals);
+        return VISITOR.equals(card.VISITOR) && Objects.equals(books, card.books) && Objects.equals(periodicals, card.periodicals);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(visitor, books, periodicals);
+        return Objects.hash(VISITOR, books, periodicals);
     }
 
     @Override
     public String toString() {
         if (this.books == null & this.periodicals != null) {
             return "Карточка посетителя: " +
-                    "пользователь " + visitor.getName() +
+                    "пользователь " + VISITOR.getName() +
                     ", взятых книг нет " +
                     ", взятая периодика: " + periodicals;
         } else if (this.books != null & this.periodicals == null) {
             return "Карточка посетителя: " +
-                    "пользователь " + visitor.getName() +
+                    "пользователь " + VISITOR.getName() +
                     ", взятые книги: " + books +
                     ", взятой периодики нет ";
         } else if (this.books == null & this.periodicals == null) {
             return "Карточка посетителя: " +
-                    "пользователь " + visitor.getName() +
+                    "пользователь " + VISITOR.getName() +
                     ", взятых книг нет " +
                     ", взятой периодики нет ";
         }
         return "Карточка посетителя: " +
-                "пользователь " + visitor.getName() +
+                "пользователь " + VISITOR.getName() +
                 ", взятые книги: " + books +
                 ", взятая периодика: " + periodicals;
     }

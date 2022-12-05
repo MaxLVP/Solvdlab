@@ -1,19 +1,21 @@
 package com.solvd.library.menu;
 
 import com.solvd.library.cards.Card;
+import com.solvd.library.exceptions.PeriodicalNotFoundException;
 import com.solvd.library.library.Giveaway;
 import com.solvd.library.others.Periodicals;
+import org.apache.logging.log4j.Logger;
 
 public class MenuTakePeriodical {
 
-    public static void takePeriodical(Card card) {
-        Periodicals periodical = new Giveaway().giveaway();
+    public static void takePeriodical(Card card, Logger logger) throws PeriodicalNotFoundException {
+        Periodicals periodical = new Giveaway().giveaway(logger);
         if (periodical == null) {
-            System.out.println("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
+            logger.info("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
         } else {
-            System.out.println("Пользователю " + card.getVisitor().getName() + " выдано: " + periodical);
+            logger.info("Пользователю " + card.getVisitor().getName() + " выдано: " + periodical);
             card.setPeriodicals(periodical);
-            System.out.println(card);
+            logger.info(card);
         }
     }
 }

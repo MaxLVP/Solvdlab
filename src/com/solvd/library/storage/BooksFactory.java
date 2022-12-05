@@ -2,6 +2,8 @@ package com.solvd.library.storage;
 
 import com.solvd.library.books.Book;
 import com.solvd.library.books.Genre;
+import com.solvd.library.exceptions.LibraryBooksNotFound;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -41,18 +43,30 @@ public class BooksFactory {
         BOOK_LIST.add(book);
     }
 
-    public static Book chooseBook(Genre genre) {
-        Random random = new Random();
+    public static Book chooseBook(Genre genre, Logger logger) {
         ArrayList<Book> genreBooks = new ArrayList<>();
         for (Book book : BOOK_LIST) {
             if (book.getGenre() == genre) {
                 genreBooks.add(book);
             }
         }
+        try {
+            Book book = chooseBookForGenre(genreBooks);
+            BOOK_LIST.remove(book);
+            return book;
+        } catch (LibraryBooksNotFound ex) {
+            logger.warn(ex.getMessage());
+            return null;
+        }
+    }
+
+    public static Book chooseBookForGenre(ArrayList<Book> genreBooks) throws LibraryBooksNotFound {
+        if (genreBooks.size() == 0) {
+            throw new LibraryBooksNotFound();
+        }
+        Random random = new Random();
         int i = random.nextInt(genreBooks.size());
-        Book book = genreBooks.get(i);
-        BOOK_LIST.remove(book);
-        return book;
+        return genreBooks.get(i);
     }
 
 }

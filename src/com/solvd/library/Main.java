@@ -2,6 +2,8 @@ package com.solvd.library;
 
 import com.solvd.library.authentificaation.Auth;
 import com.solvd.library.cards.Card;
+import com.solvd.library.exceptions.GenreNotFoundException;
+import com.solvd.library.exceptions.PeriodicalNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,16 +13,16 @@ import static com.solvd.library.storage.BooksFactory.fillInStorage;
 public class Main {
     static final Logger logger = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws GenreNotFoundException, PeriodicalNotFoundException {
         fillInStorage();
-        logger.warn("error");
-        Card card = new Auth().auth();
-        System.out.println("В систему вошел пользователь: " + card.getVisitor());
-        System.out.println(card);
+        logger.info("Добро пожаловать");
+        Card card = new Auth().auth(logger);
+        logger.info("В систему вошел пользователь: " + card.getVisitor());
+        logger.info(card);
         boolean exit = false;
         while (!exit) {
-            exit = menu(card, false);
+            exit = menu(card, false, logger);
         }
-        System.out.println("Выход из программы");
+        logger.info("Выход из программы");
     }
 }

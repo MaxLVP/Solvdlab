@@ -1,22 +1,25 @@
 package com.solvd.library.authentificaation;
 
 import com.solvd.library.cards.Card;
+import com.solvd.library.exceptions.PersonNotFoundException;
 import com.solvd.library.visitors.Visitor;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
 public class Auth {
 
-    public Card auth() {
-        System.out.println("Введите номер телефона");
+    public Card auth(Logger logger) {
+        logger.info("Введите номер телефона");
         Scanner scanner = new Scanner(System.in);
         String phone = scanner.nextLine();
-        Card card = new Login().login(phone);
-        if (card == null) {
-            System.out.println("Вы не зарегистрированы, пройдите регистрацию");
+        try {
+            return new Login().login(phone, logger);
+        } catch (PersonNotFoundException ex) {
+            logger.warn(ex.getMessage());
+            logger.info("Вы не зарегистрированы, пройдите регистрацию");
             Visitor person = new Registration().register(phone);
-            card = new Card(person, null, null);
+            return new Card(person, null, null);
         }
-        return card;
     }
 }
