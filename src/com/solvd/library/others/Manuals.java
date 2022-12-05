@@ -1,6 +1,10 @@
 package com.solvd.library.others;
 
+import com.solvd.library.MyLogger;
+
 public class Manuals extends Periodicals implements IReading{
+    static final MyLogger logger = MyLogger.getInstance();
+
     static {
         String typeName = "Методичка";
         System.out.println("Получена " + typeName);
@@ -12,7 +16,7 @@ public class Manuals extends Periodicals implements IReading{
 
     @Override
     public void returnPeriodicals() {
-        System.out.println(this.getName() + " возвращена");
+        logger.info(this.getName() + " возвращена");
     }
 
     @Override

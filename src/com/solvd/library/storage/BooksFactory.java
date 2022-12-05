@@ -1,15 +1,16 @@
 package com.solvd.library.storage;
 
+import com.solvd.library.MyLogger;
 import com.solvd.library.books.Book;
 import com.solvd.library.books.Genre;
 import com.solvd.library.exceptions.LibraryBooksNotFound;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class BooksFactory {
     private final static ArrayList<Book> BOOK_LIST = new ArrayList<>();
+    static final MyLogger logger = MyLogger.getInstance();
 
     public static void fillInStorage() {
         BOOK_LIST.add(new Book("Смерть на Ниле", "Агата Кристи", 340, Genre.DETECTIVE));
@@ -43,7 +44,7 @@ public class BooksFactory {
         BOOK_LIST.add(book);
     }
 
-    public static Book chooseBook(Genre genre, Logger logger) {
+    public static Book chooseBook(Genre genre) {
         ArrayList<Book> genreBooks = new ArrayList<>();
         for (Book book : BOOK_LIST) {
             if (book.getGenre() == genre) {

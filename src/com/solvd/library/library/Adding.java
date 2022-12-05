@@ -1,20 +1,21 @@
 package com.solvd.library.library;
 
+import com.solvd.library.MyLogger;
 import com.solvd.library.books.Book;
 import com.solvd.library.cards.Card;
 import com.solvd.library.exceptions.GenreNotFoundException;
 import com.solvd.library.exceptions.PersonBooksNotFound;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
 import static com.solvd.library.storage.BooksFactory.addBook;
 
 public class Adding {
+    static final MyLogger logger = MyLogger.getInstance();
 
-    public Book returnAndTakeBook(Card card, Logger logger) throws GenreNotFoundException {
+    public Book returnAndTakeBook(Card card) throws GenreNotFoundException {
         try {
-            returnBook(card, logger);
+            returnBook(card);
         } catch (PersonBooksNotFound ex) {
             logger.warn(ex.getMessage());
         }
@@ -23,12 +24,12 @@ public class Adding {
         String answer = scan.nextLine();
         Book book = null;
         if ("да".equals(answer)) {
-            book = new Suggestion().suggest(card, logger);
+            book = new Suggestion().suggest(card);
         }
         return book;
     }
 
-    public void returnBook(Card card, Logger logger) throws PersonBooksNotFound {
+    public void returnBook(Card card) throws PersonBooksNotFound {
         Book book = card.getBooks();
         if (book == null) {
             throw new PersonBooksNotFound();
