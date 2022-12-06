@@ -3,29 +3,29 @@ package com.solvd.library.storage;
 import com.solvd.library.MyLogger;
 import com.solvd.library.visitors.Visitor;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class VisitorFactory {
-    private final static ArrayList<Visitor> LIST = new ArrayList<>();
+    private final static HashSet<Visitor> VISITORS = new HashSet<>();
     static final MyLogger logger = MyLogger.getInstance();
 
     public void fillInVisitors() {
-        LIST.add(new Visitor("Стивен", "+123456", "Кинг", "ужасы"));
+        VISITORS.add(new Visitor("Стивен", "+123456", "Кинг", "ужасы"));
     }
 
-    public ArrayList<Visitor> getLIST() {
-        return LIST;
+    public HashSet<Visitor> getVisitors() {
+        return VISITORS;
     }
 
     public static Visitor addVisitor(Visitor visitor) {
-        LIST.add(visitor);
+        VISITORS.add(visitor);
         return visitor;
     }
 
     public static void removeVisitor(Visitor visitor) {
-        for (Visitor persons : LIST) {
+        for (Visitor persons : VISITORS) {
             if (visitor.getPhone().equals(persons.getPhone())) {
-                LIST.remove(visitor);
+                VISITORS.remove(visitor);
                 logger.info("Пользователь удален");
             }
             else {
@@ -35,7 +35,7 @@ public class VisitorFactory {
     }
 
     public Visitor chooseVisitor(String phone) {
-        for (Visitor visitor : LIST) {
+        for (Visitor visitor : VISITORS) {
             if (visitor.getPhone().equals(phone)) {
                 return visitor;
             }

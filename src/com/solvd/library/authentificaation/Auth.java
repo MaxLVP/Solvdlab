@@ -20,7 +20,7 @@ public class Auth {
             logger.warn(ex.getMessage());
             logger.info("Вы не зарегистрированы, пройдите регистрацию");
             Visitor person = new Registration().register(phone);
-            return new Card(person, null, null);
+            return new Card(person, null, null, null);
         }
     }
 }

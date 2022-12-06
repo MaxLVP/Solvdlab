@@ -7,6 +7,7 @@ import com.solvd.library.exceptions.PeriodicalNotFoundException;
 
 import java.util.Scanner;
 
+import static com.solvd.library.library.GiveComics.chooseComicsForVisitor;
 import static com.solvd.library.menu.MenuRemoveVisitor.removeVisitor;
 import static com.solvd.library.menu.MenuReturnBook.returnBook;
 import static com.solvd.library.menu.MenuTakeBook.takeBook;
@@ -20,10 +21,11 @@ public class Menu {
         System.out.println("Что вы хотите сделать?");
         System.out.println("1. Взять книгу ");
         System.out.println("2. Сдать книгу ");
-        System.out.println("3. Взять журнал, газету или комиксы ");
+        System.out.println("3. Взять журнал, газету или методичку ");
         System.out.println("4. Удалить себя из базы данных ");
         System.out.println("5. Уйти из библиотеки");
         System.out.println("6. Изменить данные");
+        System.out.println("7. Взять комикс");
         Scanner scan = new Scanner(System.in);
         int i = scan.nextInt();
         switch (i) {
@@ -43,6 +45,10 @@ public class Menu {
                 changeVisitorData(card.getVisitor());
                 logger.info("Данные изменены");
                 logger.info(card.getVisitor());
+            }
+            case 7 -> {
+                chooseComicsForVisitor(card);
+                logger.info(card);
             }
         }
         return exit;

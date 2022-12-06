@@ -1,8 +1,11 @@
 package com.solvd.library.books;
 
+import com.solvd.library.MyLogger;
+
 import java.util.Objects;
 
 public class Book {
+    static final MyLogger logger = MyLogger.getInstance();
     private String name;
     private String author;
     private int pages;
@@ -32,7 +35,7 @@ public class Book {
     }
 
     public final void readBook() {
-        System.out.println("Книга " + this.name + " была прочитана.");
+        logger.info("Книга " + this.name + " была прочитана.");
     }
 
     @Override

@@ -7,6 +7,8 @@ import com.solvd.library.others.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static com.solvd.library.storage.NewsFactory.getNews;
+
 public class Giveaway {
     static final MyLogger logger = MyLogger.getInstance();
 
@@ -23,7 +25,6 @@ public class Giveaway {
         switch (type) {
             case "газета" -> periodical = giveNewspaper();
             case "методичка" -> periodical = giveManual();
-            case "комикс" -> periodical = giveComics();
             case "журнал" -> periodical = giveMagazine();
             default -> throw new PeriodicalNotFoundException();
         }
@@ -43,13 +44,7 @@ public class Giveaway {
     }
 
     public Newspaper giveNewspaper() {
-        ArrayList<String> info = getInfo();
-        return new Newspaper(info.get(0), info.get(1));
-    }
-
-    public Comics giveComics() {
-        ArrayList<String> info = getInfo();
-        return new Comics(info.get(0), info.get(1));
+        return getNews();
     }
 
     public Magazine giveMagazine() {

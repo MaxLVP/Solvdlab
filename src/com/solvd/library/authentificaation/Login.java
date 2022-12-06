@@ -12,7 +12,7 @@ public class Login {
         VisitorFactory data = new VisitorFactory();
         data.fillInVisitors();
         Visitor person = data.chooseVisitor(phone);
-        Card card = new CardsFactory().returnCard(data.getLIST(), person);
+        Card card = new CardsFactory().returnCard(data.getVisitors(), person);
         if (card == null) {
             throw new PersonNotFoundException();
         }
