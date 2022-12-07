@@ -10,7 +10,7 @@ public class MenuTakePeriodical {
     static final MyLogger logger = MyLogger.getInstance();
 
     public static void takePeriodical(Card card) throws PeriodicalNotFoundException {
-        Periodicals periodical = new Giveaway().giveaway();
+        Periodicals periodical = new Giveaway().giveaway(card);
         if (periodical == null) {
             logger.info("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
         } else {

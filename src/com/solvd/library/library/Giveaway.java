@@ -1,19 +1,26 @@
 package com.solvd.library.library;
 
 import com.solvd.library.MyLogger;
+import com.solvd.library.cards.Card;
 import com.solvd.library.exceptions.PeriodicalNotFoundException;
 import com.solvd.library.others.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static com.solvd.library.library.ReturnPeriodicals.returnPeriodical;
+import static com.solvd.library.storage.MagazinesFactory.getMagazine;
 import static com.solvd.library.storage.NewsFactory.getNews;
 
 public class Giveaway {
     static final MyLogger logger = MyLogger.getInstance();
 
-    public Periodicals giveaway() throws PeriodicalNotFoundException {
-        logger.info("Что вы хотите получить? (газета, комикс, журнал, методичка)");
+    public Periodicals giveaway(Card card) throws PeriodicalNotFoundException {
+        if (card.getPeriodicals() != null) {
+            logger.info("У вас не возвращена переодика, верните предыдущую");
+            returnPeriodical(card.getPeriodicals());
+        }
+        logger.info("Что вы хотите получить? (газета, журнал, методичка)");
         Scanner scanner = new Scanner(System.in);
         String type = "";
         if (scanner.hasNextLine()) {
@@ -48,8 +55,7 @@ public class Giveaway {
     }
 
     public Magazine giveMagazine() {
-        ArrayList<String> info = getInfo();
-        return new Magazine(info.get(0), info.get(1));
+        return getMagazine();
     }
 
     public Manuals giveManual() {

@@ -1,10 +1,12 @@
 package com.solvd.library.storage;
 
+import com.solvd.library.MyLogger;
 import com.solvd.library.others.Newspaper;
 
 import java.util.PriorityQueue;
 
 public class NewsFactory {
+    static final MyLogger logger = MyLogger.getInstance();
     private final static PriorityQueue<Newspaper> NEWS = new PriorityQueue<>();
 
     public static void fillInNews() {
@@ -14,8 +16,12 @@ public class NewsFactory {
         NEWS.add(new Newspaper(4, "The Athletic", "Sport"));
     }
 
+    public static void addNews(Newspaper newspaper) {
+        NEWS.add(newspaper);
+        logger.info(NEWS);
+    }
+
     public static Newspaper getNews() {
-        fillInNews();
         return NEWS.poll();
     }
 }

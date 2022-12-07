@@ -18,14 +18,14 @@ public class Menu {
     static final MyLogger logger = MyLogger.getInstance();
 
     public static boolean menu(Card card, boolean exit) throws GenreNotFoundException, PeriodicalNotFoundException {
-        System.out.println("Что вы хотите сделать?");
-        System.out.println("1. Взять книгу ");
-        System.out.println("2. Сдать книгу ");
-        System.out.println("3. Взять журнал, газету или методичку ");
-        System.out.println("4. Удалить себя из базы данных ");
-        System.out.println("5. Уйти из библиотеки");
-        System.out.println("6. Изменить данные");
-        System.out.println("7. Взять комикс");
+        logger.info("Что вы хотите сделать?");
+        logger.info("1. Взять книгу ");
+        logger.info("2. Сдать книгу ");
+        logger.info("3. Взять журнал, газету или методичку ");
+        logger.info("4. Удалить себя из базы данных ");
+        logger.info("5. Уйти из библиотеки");
+        logger.info("6. Изменить данные");
+        logger.info("7. Взять комикс");
         Scanner scan = new Scanner(System.in);
         int i = scan.nextInt();
         switch (i) {

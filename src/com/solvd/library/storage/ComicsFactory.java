@@ -17,7 +17,6 @@ public class ComicsFactory {
     }
 
     public static Comics chooseComics(Genre genre) {
-        fillInComics();
         COMICS.sort(new SortByNameComics());
         for (Comics com : COMICS) {
             if (com.getGenre() == genre) {
