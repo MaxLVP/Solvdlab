@@ -1,9 +1,6 @@
 package com.solvd.library.storage;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class MyLinkedList<T> implements List<T> {
     int size;
@@ -20,7 +17,6 @@ public class MyLinkedList<T> implements List<T> {
             this.next = next;
             this.prev = prev;
         }
-
     }
 
     @Override
@@ -48,21 +44,25 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            MyNode<T> current = first;
+            final MyNode<T> NODE = first;
+
             @Override
             public boolean hasNext() {
-                return current.next != null;
+                return NODE.next != null;
             }
 
             @Override
             public T next() {
-                return current.next.item;
+                return NODE.next.item;
             }
         };
     }
 
     @Override
     public Object[] toArray() {
+        if (size == 0) {
+            throw  new NullPointerException();
+        }
         Object[] myArray = new Object[size];
         for (int i = 0; i < size; i++) {
             myArray[i] = get(i);
@@ -86,14 +86,14 @@ public class MyLinkedList<T> implements List<T> {
             last.next = node;
         }
         last = node;
-        size ++;
+        size++;
         return true;
     }
 
     @Override
     public boolean remove(Object o) {
         if (size == 0) {
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         if (size == 1) {
             clear();
@@ -130,27 +130,54 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        boolean flag = true;
+        for (Object o : c) {
+            if (!contains(o)) {
+                return false;
+            }
+        }
+        return flag;
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        int currentSize = size;
+        for (T o : c) {
+            add(o);
+        }
+        return c.size() == size - currentSize;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        int currentSize = size;
+        for (T o : c) {
+            add(index, o);
+            index++;
+        }
+        return c.size() == size - currentSize;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        int currentSize = size;
+        for (Object o : c) {
+            remove(o);
+        }
+        return c.size() == currentSize - size;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        int currentSize = size;
+        MyNode<T> current = first;
+        while (current != null) {
+            if (c.contains(current.item)) {
+                remove(current.item);
+            }
+            current = current.next;
+        }
+        return currentSize != size;
     }
 
     @Override
@@ -168,8 +195,7 @@ public class MyLinkedList<T> implements List<T> {
             return last.item;
         } else if (index == 0) {
             return first.item;
-        }
-        else {
+        } else {
             int ind = 0;
             MyNode<T> current = first;
             while (ind < index) {
@@ -188,8 +214,7 @@ public class MyLinkedList<T> implements List<T> {
             last.item = element;
         } else if (index == 0) {
             first.item = element;
-        }
-        else {
+        } else {
             int ind = 0;
             MyNode<T> current = first;
             while (ind < index) {
@@ -212,8 +237,7 @@ public class MyLinkedList<T> implements List<T> {
             first.prev = node;
             first = node;
             size++;
-        }
-        else {
+        } else {
             int ind = 0;
             MyNode<T> current = first;
             while (ind < index) {
@@ -231,11 +255,12 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public T remove(int index) {
         if (size == 0) {
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         if (size == 1) {
+            MyNode<T> current = first;
             clear();
-            return null;
+            return current.item;
         }
         if (index == size - 1) {
             MyNode<T> current = last;
@@ -274,7 +299,7 @@ public class MyLinkedList<T> implements List<T> {
                 return index;
             }
             current = current.next;
-            index ++;
+            index++;
         }
         return -1;
     }
@@ -288,7 +313,7 @@ public class MyLinkedList<T> implements List<T> {
                 return index;
             }
             current = current.prev;
-            index --;
+            index--;
         }
         return -1;
     }
@@ -305,14 +330,26 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        List<T> list = new ArrayList<>();
+        MyNode<T> current = first;
+        int index = 0;
+        while (index != fromIndex) {
+            current = current.next;
+            index++;
+        }
+        while (index != toIndex) {
+            list.add(current.item);
+            current = current.next;
+            index++;
+        }
+        return list;
     }
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("[");
         MyNode<T> current = first;
-        while( current != null) {
+        while (current != null) {
             result.append(current.item);
             result.append(", ");
             current = current.next;
@@ -320,5 +357,29 @@ public class MyLinkedList<T> implements List<T> {
         result.delete(result.length() - 2, result.length());
         result.append("]");
         return result.toString();
+    }
+
+    public void addFirst(T t) {
+        add(0, t);
+    }
+
+    public void addLast(T t) {
+        add(t);
+    }
+
+    public T getFirst() {
+        return first.item;
+    }
+
+    public T getLast() {
+        return last.item;
+    }
+
+    public T removeFirst() {
+        return remove(0);
+    }
+
+    public T removeLast() {
+        return remove(size - 1);
     }
 }
