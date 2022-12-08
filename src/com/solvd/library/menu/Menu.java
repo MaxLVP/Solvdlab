@@ -7,10 +7,10 @@ import com.solvd.library.exceptions.PeriodicalNotFoundException;
 
 import java.util.Scanner;
 
-import static com.solvd.library.library.GiveComics.chooseComicsForVisitor;
 import static com.solvd.library.menu.MenuRemoveVisitor.removeVisitor;
 import static com.solvd.library.menu.MenuReturnBook.returnBook;
 import static com.solvd.library.menu.MenuTakeBook.takeBook;
+import static com.solvd.library.menu.MenuTakeComics.takeComics;
 import static com.solvd.library.menu.MenuTakePeriodical.takePeriodical;
 import static com.solvd.library.visitors.ChangeVisitorData.changeVisitorData;
 
@@ -47,7 +47,7 @@ public class Menu {
                 logger.info(card.getVisitor());
             }
             case 7 -> {
-                chooseComicsForVisitor(card);
+                takeComics(card);
                 logger.info(card);
             }
         }

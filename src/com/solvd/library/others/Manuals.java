@@ -7,7 +7,7 @@ public class Manuals extends Periodicals implements IReading{
 
     static {
         String typeName = "Методичка";
-        System.out.println("Получена " + typeName);
+        logger.info("Получена " + typeName);
     }
 
     public Manuals(String name, String genre) {

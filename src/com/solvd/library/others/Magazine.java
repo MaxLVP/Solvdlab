@@ -7,7 +7,7 @@ public class Magazine extends Periodicals implements IReading {
 
     static {
         String typeName = "Журнал";
-        System.out.println("Получен " + typeName);
+        logger.info("Получен " + typeName);
     }
 
     public Magazine(String name, String genre) {

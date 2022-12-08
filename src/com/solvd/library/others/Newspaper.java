@@ -8,7 +8,7 @@ public class Newspaper extends Periodicals implements IReading, Comparable<Newsp
 
     static {
         String typeName = "Газета";
-        System.out.println("Получена " + typeName);
+        logger.info("Получена " + typeName);
     }
 
     public Newspaper(int id, String name, String genre) {

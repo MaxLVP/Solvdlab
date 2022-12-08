@@ -10,6 +10,19 @@ public class MyLinkedList<T> implements List<T> {
     MyNode<T> first;
     MyNode<T> last;
 
+    private static class MyNode<T> {
+        T item;
+        MyNode<T> next;
+        MyNode<T> prev;
+
+        MyNode(MyNode<T> prev, T element, MyNode<T> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
+
+    }
+
     @Override
     public int size() {
         return size;
@@ -22,7 +35,7 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-        MyNode<T> current = this.first;
+        MyNode<T> current = first;
         while (current.next != null) {
             if (current.item == o) {
                 return true;
@@ -50,7 +63,11 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] myArray = new Object[size];
+        for (int i = 0; i < size; i++) {
+            myArray[i] = get(i);
+        }
+        return myArray;
     }
 
     @Override
@@ -63,43 +80,46 @@ public class MyLinkedList<T> implements List<T> {
         MyNode<T> node;
         if (size == 0) {
             node = new MyNode<>(null, t, null);
-            this.first = node;
+            first = node;
         } else {
-            node = new MyNode<>(this.last, t, null);
-            this.last.next = node;
+            node = new MyNode<>(last, t, null);
+            last.next = node;
         }
-        this.last = node;
+        last = node;
         size ++;
         return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        if (this.size == 0) {
+        if (size == 0) {
             throw new IndexOutOfBoundsException();
         }
-        if (this.size == 1) {
+        if (size == 1) {
             clear();
             return true;
         }
-        if (this.first.item == o) {
-            MyNode<T> current = this.first;
+        if (first.item == o) {
+            MyNode<T> current = first;
             this.first = current.next;
             current.next.prev = null;
+            size--;
             return true;
-        } else if (this.last.item == o) {
-            MyNode<T> current = this.last;
+        } else if (last.item == o) {
+            MyNode<T> current = last;
             this.last = current.prev;
             current.prev.next = null;
+            size--;
             return true;
         } else {
-            MyNode<T> current = this.first;
+            MyNode<T> current = first;
             while (current != null) {
                 if (current.item == o) {
                     MyNode<T> prev = current.prev;
                     MyNode<T> next = current.next;
                     prev.next = next;
                     next.prev = prev;
+                    size--;
                     return true;
                 }
                 current = current.next;
@@ -142,16 +162,16 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        if (index > this.size) {
+        if (index > size) {
             throw new IndexOutOfBoundsException();
-        } else if (index == this.size - 1) {
-            return this.last.item;
+        } else if (index == size - 1) {
+            return last.item;
         } else if (index == 0) {
-            return this.first.item;
+            return first.item;
         }
         else {
             int ind = 0;
-            MyNode<T> current = this.first;
+            MyNode<T> current = first;
             while (ind < index) {
                 current = current.next;
                 ind++;
@@ -162,16 +182,16 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        if (index > this.size) {
+        if (index > size) {
             throw new IndexOutOfBoundsException();
-        } else if (index == this.size - 1) {
-            this.last.item = element;
+        } else if (index == size - 1) {
+            last.item = element;
         } else if (index == 0) {
-            this.first.item = element;
+            first.item = element;
         }
         else {
             int ind = 0;
-            MyNode<T> current = this.first;
+            MyNode<T> current = first;
             while (ind < index) {
                 current = current.next;
                 ind++;
@@ -183,20 +203,19 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public void add(int index, T element) {
-        if (index > this.size - 1) {
+        if (index > size - 1) {
             throw new IndexOutOfBoundsException();
-        } else if (index == this.size) {
+        } else if (index == size) {
             add(element);
-            size++;
         } else if (index == 0) {
-            MyNode<T> node = new MyNode<>(null, element, this.first);
-            this.first.prev = node;
-            this.first = node;
+            MyNode<T> node = new MyNode<>(null, element, first);
+            first.prev = node;
+            first = node;
             size++;
         }
         else {
             int ind = 0;
-            MyNode<T> current = this.first;
+            MyNode<T> current = first;
             while (ind < index) {
                 current = current.next;
                 ind++;
@@ -211,26 +230,28 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        if (this.size == 0) {
+        if (size == 0) {
             throw new IndexOutOfBoundsException();
         }
-        if (this.size == 1) {
+        if (size == 1) {
             clear();
             return null;
         }
         if (index == size - 1) {
-            MyNode<T> current = this.last;
+            MyNode<T> current = last;
             current.prev.next = null;
-            this.last = current.prev;
+            last = current.prev;
+            size--;
             return current.item;
         } else if (index == 0) {
-            MyNode<T> current = this.first;
+            MyNode<T> current = first;
             current.next.prev = null;
-            this.first = current.next;
+            first = current.next;
+            size--;
             return current.item;
         } else {
             int ind = 0;
-            MyNode<T> current = this.first;
+            MyNode<T> current = first;
             while (ind < index) {
                 current = current.next;
                 ind++;
@@ -239,6 +260,7 @@ public class MyLinkedList<T> implements List<T> {
             MyNode<T> next = current.next;
             prev.next = next;
             next.prev = prev;
+            size--;
             return current.item;
         }
     }
@@ -246,7 +268,7 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public int indexOf(Object o) {
         int index = 0;
-        MyNode<T> current = this.first;
+        MyNode<T> current = first;
         while (current != null) {
             if (current.item == o) {
                 return index;
@@ -260,7 +282,7 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public int lastIndexOf(Object o) {
         int index = size - 1;
-        MyNode<T> current = this.last;
+        MyNode<T> current = last;
         while (current != null) {
             if (current.item == o) {
                 return index;
@@ -288,26 +310,15 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("Contents: ");
-        MyNode<T> current = this.first;
+        StringBuilder result = new StringBuilder("[");
+        MyNode<T> current = first;
         while( current != null) {
             result.append(current.item);
             result.append(", ");
             current = current.next;
         }
+        result.delete(result.length() - 2, result.length());
+        result.append("]");
         return result.toString();
-    }
-
-    private static class MyNode<T> {
-        T item;
-        MyNode<T> next;
-        MyNode<T> prev;
-
-        MyNode(MyNode<T> prev, T element, MyNode<T> next) {
-            this.item = element;
-            this.next = next;
-            this.prev = prev;
-        }
-
     }
 }

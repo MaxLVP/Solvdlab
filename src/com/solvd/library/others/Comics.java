@@ -11,7 +11,7 @@ public class Comics implements IReading {
 
     static {
         String typeName = "Комикс";
-        System.out.println("Получен " + typeName);
+        logger.info("Получен " + typeName);
     }
 
     public Comics(String name, Genre genre) {

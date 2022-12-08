@@ -16,6 +16,10 @@ public class ComicsFactory {
         COMICS.add(new Comics("Волшебник страны ОЗ", Genre.FANTASY));
     }
 
+    public static void addComics(Comics comic) {
+        COMICS.add(comic);
+    }
+
     public static Comics chooseComics(Genre genre) {
         COMICS.sort(new SortByNameComics());
         for (Comics com : COMICS) {
