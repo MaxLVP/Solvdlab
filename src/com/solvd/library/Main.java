@@ -17,9 +17,8 @@ public class Main {
         Card card = new Auth().auth();
         logger.info("В систему вошел пользователь: " + card.getVisitor());
         logger.info(card);
-        boolean exit = false;
-        while (!exit) {
-            exit = menu(card, false);
+        while (!menu(card, false)) {
+            menu(card, false);
         }
         logger.info("Выход из программы");
     }

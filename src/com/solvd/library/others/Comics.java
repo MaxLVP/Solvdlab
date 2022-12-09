@@ -4,7 +4,7 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.books.Genre;
 
 
-public class Comics implements IReading {
+public class Comics {
     static final MyLogger logger = MyLogger.getInstance();
     private String name;
     private Genre genre;
@@ -33,11 +33,6 @@ public class Comics implements IReading {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
-    }
-
-    @Override
-    public void returnPeriodicals() {
-        logger.info(this.getName() + " возвращен");
     }
 
     @Override
