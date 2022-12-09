@@ -26,5 +26,5 @@ public abstract class Periodicals implements IReading{
     }
 
     @Override
-    public void returnPeriodicals() {}
+    public void returnPeriodicals(Periodicals periodicals) {}
 }

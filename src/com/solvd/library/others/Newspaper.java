@@ -2,6 +2,8 @@ package com.solvd.library.others;
 
 import com.solvd.library.MyLogger;
 
+import static com.solvd.library.storage.NewsFactory.addNews;
+
 public class Newspaper extends Periodicals implements IReading, Comparable<Newspaper>{
     static final MyLogger logger = MyLogger.getInstance();
     private final int ID;
@@ -27,7 +29,8 @@ public class Newspaper extends Periodicals implements IReading, Comparable<Newsp
     }
 
     @Override
-    public void returnPeriodicals() {
+    public void returnPeriodicals(Periodicals periodicals) {
+        addNews((Newspaper) periodicals);
         logger.info(this.getName() + " возвращена");
     }
 

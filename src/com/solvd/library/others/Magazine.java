@@ -2,6 +2,8 @@ package com.solvd.library.others;
 
 import com.solvd.library.MyLogger;
 
+import static com.solvd.library.storage.MagazinesFactory.addMagazine;
+
 public class Magazine extends Periodicals implements IReading {
     static final MyLogger logger = MyLogger.getInstance();
 
@@ -15,7 +17,8 @@ public class Magazine extends Periodicals implements IReading {
     }
 
     @Override
-    public void returnPeriodicals() {
+    public void returnPeriodicals(Periodicals periodicals) {
+        addMagazine((Magazine) periodicals);
         logger.info(this.getName() + " возвращен");
     }
 

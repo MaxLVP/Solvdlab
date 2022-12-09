@@ -19,6 +19,7 @@ public class MenuTakeComics {
             logger.info("Возвращаен комикс" + comic);
             addComics(comic);
         }
+        logger.info(card);
         return chooseComicsForVisitor(card);
     }
 }

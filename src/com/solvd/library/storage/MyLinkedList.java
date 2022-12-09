@@ -72,7 +72,17 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        if (size == 0) {
+            throw  new NullPointerException();
+        }
+        if (size == a.length) {
+            for (int i = 0; i < size; i++) {
+                a[i] = (T1) get(i);
+            }
+            return a;
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
     }
 
     @Override

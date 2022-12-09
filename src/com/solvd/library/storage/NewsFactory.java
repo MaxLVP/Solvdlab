@@ -22,6 +22,9 @@ public class NewsFactory {
     }
 
     public static Newspaper getNews() {
-        return NEWS.poll();
+        logger.info(NEWS);
+        Newspaper news = NEWS.poll();
+        logger.info(NEWS);
+        return news;
     }
 }

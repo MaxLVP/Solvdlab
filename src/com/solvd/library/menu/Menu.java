@@ -7,12 +7,13 @@ import com.solvd.library.exceptions.PeriodicalNotFoundException;
 
 import java.util.Scanner;
 
+import static com.solvd.library.menu.MenuChangeData.changeVisitorDataMenu;
+import static com.solvd.library.menu.MenuExitLibrary.exitLibrary;
 import static com.solvd.library.menu.MenuRemoveVisitor.removeVisitor;
 import static com.solvd.library.menu.MenuReturnBook.returnBook;
 import static com.solvd.library.menu.MenuTakeBook.takeBook;
 import static com.solvd.library.menu.MenuTakeComics.takeComics;
 import static com.solvd.library.menu.MenuTakePeriodical.takePeriodical;
-import static com.solvd.library.visitors.ChangeVisitorData.changeVisitorData;
 
 public class Menu {
     static final MyLogger logger = MyLogger.getInstance();
@@ -33,23 +34,9 @@ public class Menu {
             case 2 -> returnBook(card);
             case 3 -> takePeriodical(card);
             case 4 -> removeVisitor(card);
-            case 5 -> {
-                if (card.getPeriodicals() != null) {
-                    logger.info("У вас не сдана периодика " + card.getPeriodicals().getName());
-                    card.getPeriodicals().returnPeriodicals();
-                }
-                exit = true;
-                logger.info("Всего хорошего");
-            }
-            case 6 -> {
-                changeVisitorData(card.getVisitor());
-                logger.info("Данные изменены");
-                logger.info(card.getVisitor());
-            }
-            case 7 -> {
-                takeComics(card);
-                logger.info(card);
-            }
+            case 5 -> exit = exitLibrary(card);
+            case 6 -> changeVisitorDataMenu(card);
+            case 7 -> takeComics(card);
         }
         return exit;
     }

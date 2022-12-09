@@ -1,5 +1,6 @@
 package com.solvd.library.storage;
 
+import com.solvd.library.MyLogger;
 import com.solvd.library.books.Genre;
 import com.solvd.library.others.Comics;
 import com.solvd.library.others.SortByNameComics;
@@ -7,6 +8,7 @@ import com.solvd.library.others.SortByNameComics;
 import java.util.ArrayList;
 
 public class ComicsFactory {
+    static final MyLogger logger = MyLogger.getInstance();
     private final static ArrayList<Comics> COMICS = new ArrayList<>();
 
     public static void fillInComics() {
@@ -18,13 +20,16 @@ public class ComicsFactory {
 
     public static void addComics(Comics comic) {
         COMICS.add(comic);
+        logger.info(COMICS);
     }
 
     public static Comics chooseComics(Genre genre) {
         COMICS.sort(new SortByNameComics());
+        logger.info(COMICS);
         for (Comics com : COMICS) {
             if (com.getGenre() == genre) {
                 COMICS.remove(com);
+                logger.info(COMICS);
                 return com;
             }
         }
