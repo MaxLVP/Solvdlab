@@ -63,7 +63,7 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public Object[] toArray() {
         if (size == 0) {
-            throw  new NullPointerException();
+            throw new NullPointerException();
         }
         Object[] myArray = new Object[size];
         for (int i = 0; i < size; i++) {
@@ -75,7 +75,7 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public <T1> T1[] toArray(T1[] a) {
         if (size == 0) {
-            throw  new NullPointerException();
+            throw new NullPointerException();
         }
         if (size <= a.length) {
             for (int i = 0; i < size; i++) {
@@ -347,13 +347,13 @@ public class MyLinkedList<T> implements List<T> {
                 if (NODE.next != null) {
                     NODE = NODE.next;
                 }
-                index ++;
+                index++;
                 return item;
             }
 
             @Override
             public boolean hasPrevious() {
-                return index > 0 ;
+                return index > 0;
             }
 
             @Override
@@ -362,7 +362,7 @@ public class MyLinkedList<T> implements List<T> {
                 if (NODE.prev != null) {
                     NODE = NODE.prev;
                 }
-                index --;
+                index--;
                 return item;
             }
 
@@ -396,7 +396,66 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        return null;
+        return new ListIterator<T>() {
+            MyNode<T> NODE = first;
+            private int index1 = index;
+
+            @Override
+            public boolean hasNext() {
+                return index1 < size;
+            }
+
+            @Override
+            public T next() {
+                T item = NODE.item;
+                if (NODE.next != null) {
+                    NODE = NODE.next;
+                }
+                index1++;
+                return item;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return index1 > 0;
+            }
+
+            @Override
+            public T previous() {
+                T item = NODE.item;
+                if (NODE.prev != null) {
+                    NODE = NODE.prev;
+                }
+                index1--;
+                return item;
+            }
+
+            @Override
+            public int nextIndex() {
+                return MyLinkedList.this.indexOf(NODE.next.item);
+            }
+
+            @Override
+            public int previousIndex() {
+                return MyLinkedList.this.indexOf(NODE.prev.item);
+            }
+
+            @Override
+            public void remove() {
+                MyLinkedList.this.remove(NODE.item);
+            }
+
+            @Override
+            public void set(T t) {
+                MyLinkedList.this.set(MyLinkedList.this.indexOf(NODE.item), t);
+
+            }
+
+            @Override
+            public void add(T t) {
+                MyLinkedList.this.add(MyLinkedList.this.indexOf(NODE.item), t);
+            }
+        };
     }
 
     @Override
