@@ -9,11 +9,11 @@ public class VisitorFactory {
     private final static HashSet<Visitor> VISITORS = new HashSet<>();
     static final MyLogger logger = MyLogger.getInstance();
 
-    public void fillInVisitors() {
+    public static void fillInVisitors() {
         VISITORS.add(new Visitor("Стивен", "+123456", "Кинг", "ужасы"));
     }
 
-    public HashSet<Visitor> getVisitors() {
+    public static HashSet<Visitor> getVisitors() {
         return VISITORS;
     }
 
@@ -34,7 +34,7 @@ public class VisitorFactory {
         }
     }
 
-    public Visitor chooseVisitor(String phone) {
+    public static Visitor chooseVisitor(String phone) {
         for (Visitor visitor : VISITORS) {
             if (visitor.getPhone().equals(phone)) {
                 return visitor;

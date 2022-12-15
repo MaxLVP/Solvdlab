@@ -10,9 +10,9 @@ import java.util.HashSet;
 import static com.solvd.library.storage.BooksFactory.chooseBook;
 
 public class CardsFactory {
-    private final HashMap<String, Card> CARDS = new HashMap<>();
+    private final static HashMap<String, Card> CARDS = new HashMap<>();
 
-    public void fillInCard(HashSet<Visitor> persons) {
+    public static void fillInCard(HashSet<Visitor> persons) {
         for (Visitor person : persons) {
             switch (person.getGenre()) {
                 case "детектив" -> CARDS.put(person.getPhone(), new Card(person, chooseBook(Genre.DETECTIVE), null, null));
@@ -24,8 +24,11 @@ public class CardsFactory {
         }
     }
 
-    public Card returnCard(HashSet<Visitor> persons, Visitor person) {
-        fillInCard(persons);
+    public static void addCard(Card card) {
+        CARDS.put(card.getVisitor().getPhone(), card);
+    }
+
+    public static Card returnCard(Visitor person) {
         for (String phone : CARDS.keySet()) {
             if (phone.equals(person.getPhone())) {
                 return CARDS.get(phone);
