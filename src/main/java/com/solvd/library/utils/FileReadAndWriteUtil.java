@@ -14,7 +14,7 @@ import java.util.List;
 public class FileReadAndWriteUtil {
     static final MyLogger logger = MyLogger.getInstance();
 
-    public static void readAndWriteFile() {
+    public static void countUniqueWordsInFile() {
         try {
             List<String> content = FileUtils.readLines(new File("src/main/resources/fileToRead.txt"), StandardCharsets.UTF_8);
             String contents = StringUtils.join(content, " ");

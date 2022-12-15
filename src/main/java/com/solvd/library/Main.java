@@ -7,7 +7,7 @@ import com.solvd.library.exceptions.PeriodicalNotFoundException;
 
 import static com.solvd.library.library.FillInLibrary.fillInLibrary;
 import static com.solvd.library.menu.Menu.menu;
-import static com.solvd.library.utils.FileReadAndWriteUtil.readAndWriteFile;
+import static com.solvd.library.utils.FileReadAndWriteUtil.countUniqueWordsInFile;
 
 public class Main {
     static final MyLogger logger = MyLogger.getInstance();
@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws GenreNotFoundException, PeriodicalNotFoundException {
         fillInLibrary();
-        readAndWriteFile();
+        countUniqueWordsInFile();
         logger.info("Добро пожаловать");
         Card card = authentication.auth();
         logger.info("В систему вошел пользователь: " + card.getVisitor());
