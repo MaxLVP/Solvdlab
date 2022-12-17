@@ -4,6 +4,7 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.books.Genre;
 import com.solvd.library.others.Comics;
 import com.solvd.library.others.SortByNameComics;
+import com.solvd.library.utils.Convert;
 
 import java.util.ArrayList;
 
@@ -34,5 +35,10 @@ public class ComicsFactory {
             }
         }
         return null;
+    }
+
+    public static void getComicsCount() {
+        Convert<Integer, String> convert = size -> size.toString();
+        logger.info("Количество комиксов: " + convert.convert(COMICS.size()));
     }
 }

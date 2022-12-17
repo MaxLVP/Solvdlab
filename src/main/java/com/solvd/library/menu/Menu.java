@@ -11,13 +11,13 @@ import java.util.Scanner;
 import static com.solvd.library.menu.MenuChangeData.changeVisitorDataMenu;
 import static com.solvd.library.menu.MenuChangeVisitor.changeVisitor;
 import static com.solvd.library.menu.MenuExitLibrary.exitLibrary;
+import static com.solvd.library.menu.MenuGetSize.getSizeOfLibrary;
 import static com.solvd.library.menu.MenuRemoveVisitor.removeVisitor;
 import static com.solvd.library.menu.MenuReturnBook.returnBook;
 import static com.solvd.library.menu.MenuReturnComics.returnComics;
 import static com.solvd.library.menu.MenuTakeBook.takeBook;
 import static com.solvd.library.menu.MenuTakeComics.takeComics;
 import static com.solvd.library.menu.MenuTakePeriodical.takePeriodical;
-import static com.solvd.library.storage.BooksFactory.getSizeofLibrary;
 
 public class Menu {
     static final MyLogger logger = MyLogger.getInstance();
@@ -45,7 +45,7 @@ public class Menu {
             case 6 -> takeComics(card);
             case 7 -> returnComics(card);
             case 8 -> changeVisitor(card, authentication);
-            case 9 -> getSizeofLibrary();
+            case 9 -> getSizeOfLibrary();
             case 10 -> exit = exitLibrary(card);
         }
         return exit;

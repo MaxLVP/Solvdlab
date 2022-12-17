@@ -71,9 +71,9 @@ public class BooksFactory {
         return genreBooks.get(i);
     }
 
-    public static void getSizeofLibrary() {
+    public static void getBooksCount() {
         Function<Integer, String> convert = x -> String.valueOf(x);
-        logger.info("Количество книг " + convert.apply(BOOK_LIST.size()));
+        logger.info("Количество книг: " + convert.apply(BOOK_LIST.size()));
     }
 
 }

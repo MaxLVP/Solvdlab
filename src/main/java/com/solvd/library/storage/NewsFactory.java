@@ -2,6 +2,7 @@ package com.solvd.library.storage;
 
 import com.solvd.library.MyLogger;
 import com.solvd.library.others.Newspaper;
+import com.solvd.library.utils.Convert;
 
 import java.util.PriorityQueue;
 
@@ -19,6 +20,11 @@ public class NewsFactory {
     public static void addNews(Newspaper newspaper) {
         NEWS.add(newspaper);
         logger.info(NEWS);
+    }
+
+    public static void getNewsCount() {
+        Convert<Integer, String> convert = size -> size.toString();
+        logger.info("Количество газет: " + convert.convert(NEWS.size()));
     }
 
     public static Newspaper getNews() {

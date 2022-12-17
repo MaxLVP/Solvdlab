@@ -1,6 +1,6 @@
 package com.solvd.library.library;
 
-import java.util.function.Supplier;
+import com.solvd.library.utils.startStaticFunction;
 
 import static com.solvd.library.storage.BooksFactory.fillInStorage;
 import static com.solvd.library.storage.CardsFactory.fillInCard;
@@ -13,15 +13,14 @@ import static com.solvd.library.storage.VisitorFactory.getVisitors;
 public class FillInLibrary {
 
     public static void fillInLibrary() {
-        Supplier<Boolean> supplier = () -> {
+        startStaticFunction start = () -> {
             fillInStorage();
             fillInMagazines();
             fillInComics();
             fillInNews();
             fillInVisitors();
             fillInCard(getVisitors());
-            return true;
         };
-        supplier.get();
+        start.run();
     }
 }

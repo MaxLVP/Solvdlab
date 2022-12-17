@@ -1,6 +1,7 @@
 package com.solvd.library.visitors;
 
 import com.solvd.library.MyLogger;
+import com.solvd.library.utils.ReturnObject;
 
 import java.util.Scanner;
 
@@ -8,11 +9,14 @@ public class ChangeVisitorData {
     static final MyLogger logger = MyLogger.getInstance();
 
     public static Visitor changeVisitorData(Visitor visitor) {
-        logger.info("Что хотите изменить? (телефон, жанр)");
         Scanner scanner = new Scanner(System.in);
+        ReturnObject<String> ret = () -> {
+            logger.info("Что хотите изменить? (телефон, жанр)");
+            return scanner.nextLine();
+        };
         String type = "";
         if (scanner.hasNextLine()) {
-            type = scanner.nextLine();
+            type = ret.get();
         } else {
             logger.info("Вы не ввели что хотите получить");
         }
