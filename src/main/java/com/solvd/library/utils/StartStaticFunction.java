@@ -1,7 +1,7 @@
 package com.solvd.library.utils;
 
 @FunctionalInterface
-public interface startStaticFunction {
+public interface StartStaticFunction {
 
     void run();
 }
