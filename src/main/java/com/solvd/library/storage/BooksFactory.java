@@ -7,6 +7,7 @@ import com.solvd.library.exceptions.LibraryBooksNotFound;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Function;
 
 public class BooksFactory {
     private final static ArrayList<Book> BOOK_LIST = new ArrayList<>();
@@ -68,6 +69,11 @@ public class BooksFactory {
         Random random = new Random();
         int i = random.nextInt(genreBooks.size());
         return genreBooks.get(i);
+    }
+
+    public static void getSizeofLibrary() {
+        Function<Integer, String> convert = x -> String.valueOf(x);
+        logger.info("Количество книг " + convert.apply(BOOK_LIST.size()));
     }
 
 }

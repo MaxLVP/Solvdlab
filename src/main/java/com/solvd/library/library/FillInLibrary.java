@@ -1,5 +1,7 @@
 package com.solvd.library.library;
 
+import java.util.function.Supplier;
+
 import static com.solvd.library.storage.BooksFactory.fillInStorage;
 import static com.solvd.library.storage.CardsFactory.fillInCard;
 import static com.solvd.library.storage.ComicsFactory.fillInComics;
@@ -11,14 +13,15 @@ import static com.solvd.library.storage.VisitorFactory.getVisitors;
 public class FillInLibrary {
 
     public static void fillInLibrary() {
-        Runnable runnable = () -> {
+        Supplier<Boolean> supplier = () -> {
             fillInStorage();
             fillInMagazines();
             fillInComics();
             fillInNews();
             fillInVisitors();
             fillInCard(getVisitors());
+            return true;
         };
-        runnable.run();
+        supplier.get();
     }
 }

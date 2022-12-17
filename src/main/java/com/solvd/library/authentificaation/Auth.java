@@ -6,14 +6,18 @@ import com.solvd.library.exceptions.PersonNotFoundException;
 import com.solvd.library.visitors.Visitor;
 
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class Auth {
     static final MyLogger logger = MyLogger.getInstance();
 
     public Card auth() {
-        logger.info("Введите номер телефона");
-        Scanner scanner = new Scanner(System.in);
-        String phone = scanner.nextLine();
+        Supplier<String> getPhone = () -> {
+            logger.info("Введите номер телефона");
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextLine();
+        };
+        String phone = getPhone.get();
         try {
             return new Login().login(phone);
         } catch (PersonNotFoundException ex) {

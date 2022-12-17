@@ -17,6 +17,7 @@ import static com.solvd.library.menu.MenuReturnComics.returnComics;
 import static com.solvd.library.menu.MenuTakeBook.takeBook;
 import static com.solvd.library.menu.MenuTakeComics.takeComics;
 import static com.solvd.library.menu.MenuTakePeriodical.takePeriodical;
+import static com.solvd.library.storage.BooksFactory.getSizeofLibrary;
 
 public class Menu {
     static final MyLogger logger = MyLogger.getInstance();
@@ -31,7 +32,8 @@ public class Menu {
         logger.info("6. Взять комикс");
         logger.info("7. Вернуть комикс");
         logger.info("8. Выйти из системы");
-        logger.info("9. Уйти из библиотеки");
+        logger.info("9. Узнать общее количество книг");
+        logger.info("10. Уйти из библиотеки");
         Scanner scan = new Scanner(System.in);
         int i = scan.nextInt();
         switch (i) {
@@ -43,7 +45,8 @@ public class Menu {
             case 6 -> takeComics(card);
             case 7 -> returnComics(card);
             case 8 -> changeVisitor(card, authentication);
-            case 9 -> exit = exitLibrary(card);
+            case 9 -> getSizeofLibrary();
+            case 10 -> exit = exitLibrary(card);
         }
         return exit;
     }
