@@ -1,7 +1,7 @@
 package com.solvd.library.utils;
 
 @FunctionalInterface
-public interface ReturnObject<T> {
+public interface IConvert<T, R> {
 
-    T get();
+    R convert(T t);
 }

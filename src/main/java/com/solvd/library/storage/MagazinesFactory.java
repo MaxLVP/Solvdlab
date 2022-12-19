@@ -2,7 +2,7 @@ package com.solvd.library.storage;
 
 import com.solvd.library.MyLogger;
 import com.solvd.library.others.Magazine;
-import com.solvd.library.utils.Convert;
+import com.solvd.library.utils.IConvert;
 
 import java.util.Random;
 
@@ -31,7 +31,7 @@ public class MagazinesFactory {
     }
 
     public static void getMagazinesCount() {
-        Convert<Integer, String> convert = size -> size.toString();
+        IConvert<Integer, String> convert = size -> size.toString();
         logger.info("Количество журналов: " + convert.convert(LIST.size()));
     }
 }

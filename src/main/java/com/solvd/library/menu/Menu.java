@@ -7,6 +7,7 @@ import com.solvd.library.exceptions.GenreNotFoundException;
 import com.solvd.library.exceptions.PeriodicalNotFoundException;
 
 import java.util.Scanner;
+import java.util.function.ToIntFunction;
 
 import static com.solvd.library.menu.MenuChangeData.changeVisitorDataMenu;
 import static com.solvd.library.menu.MenuChangeVisitor.changeVisitor;
@@ -35,7 +36,8 @@ public class Menu {
         logger.info("9. Узнать общее количество книг");
         logger.info("10. Уйти из библиотеки");
         Scanner scan = new Scanner(System.in);
-        int i = scan.nextInt();
+        ToIntFunction<String> toIntFunction = Integer::parseInt;
+        int i = toIntFunction.applyAsInt(scan.nextLine());
         switch (i) {
             case 1 -> takeBook(card);
             case 2 -> returnBook(card);

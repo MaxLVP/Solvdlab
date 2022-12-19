@@ -6,11 +6,12 @@ import com.solvd.library.exceptions.GenreNotFoundException;
 import com.solvd.library.others.Comics;
 
 import static com.solvd.library.storage.ComicsFactory.chooseComics;
+import static com.solvd.library.utils.ReturnVisitorGenre.returnGenre;
 
 public class GiveComics {
 
     public static Comics chooseComicsForVisitor(Card card) throws GenreNotFoundException {
-        String info = card.getVisitor().getGenre();
+        String info = returnGenre(card.getVisitor());
         Comics com;
         switch (info) {
             case "детектив" -> {

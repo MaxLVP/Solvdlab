@@ -1,6 +1,6 @@
 package com.solvd.library.library;
 
-import com.solvd.library.utils.StartStaticFunction;
+import com.solvd.library.utils.IStartStaticFunction;
 
 import static com.solvd.library.storage.BooksFactory.fillInStorage;
 import static com.solvd.library.storage.CardsFactory.fillInCard;
@@ -13,7 +13,7 @@ import static com.solvd.library.storage.VisitorFactory.getVisitors;
 public class FillInLibrary {
 
     public static void fillInLibrary() {
-        StartStaticFunction start = () -> {
+        IStartStaticFunction start = () -> {
             fillInStorage();
             fillInMagazines();
             fillInComics();

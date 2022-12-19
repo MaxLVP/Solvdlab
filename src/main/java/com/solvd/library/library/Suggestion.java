@@ -9,13 +9,14 @@ import com.solvd.library.exceptions.GenreNotFoundException;
 import java.util.Scanner;
 
 import static com.solvd.library.storage.BooksFactory.chooseBook;
+import static com.solvd.library.utils.ReturnVisitorGenre.returnGenre;
 
 public class Suggestion {
     static final MyLogger logger = MyLogger.getInstance();
 
     public Book suggest(Card card) throws GenreNotFoundException {
         if (card.getBooks() == null) {
-            String info = card.getVisitor().getGenre();
+            String info = returnGenre(card.getVisitor());
             switch (info) {
                 case "детектив" -> {
                     Book book = chooseBook(Genre.DETECTIVE);
