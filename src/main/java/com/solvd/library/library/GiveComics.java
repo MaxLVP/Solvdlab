@@ -6,7 +6,7 @@ import com.solvd.library.exceptions.GenreNotFoundException;
 import com.solvd.library.others.Comics;
 
 import static com.solvd.library.storage.ComicsFactory.chooseComics;
-import static com.solvd.library.utils.ReturnVisitorGenre.returnGenre;
+import static com.solvd.library.utils.ReturnVisitorGenreUtil.returnGenre;
 
 public class GiveComics {
 

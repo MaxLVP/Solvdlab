@@ -35,7 +35,7 @@ public class Adding {
             throw new PersonBooksNotFound();
         }
         addBook(book);
-        book.readBook();
+        book.returnBook();
         logger.info(book + " сдана");
         card.setBooks(null);
     }

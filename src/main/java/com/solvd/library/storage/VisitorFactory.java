@@ -4,6 +4,7 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.visitors.Visitor;
 
 import java.util.HashSet;
+import java.util.Optional;
 
 public class VisitorFactory {
     private final static HashSet<Visitor> VISITORS = new HashSet<>();
@@ -23,14 +24,12 @@ public class VisitorFactory {
     }
 
     public static void removeVisitor(Visitor visitor) {
-        for (Visitor persons : VISITORS) {
-            if (visitor.getPhone().equals(persons.getPhone())) {
-                VISITORS.remove(visitor);
-                logger.info("Пользователь удален");
-            }
-            else {
-                logger.warn("Такого пользователя не существует");
-            }
+        Optional<Visitor> removeVisitor = VISITORS.stream().filter(person -> person.getPhone().equals(visitor.getPhone())).findFirst();
+        if (removeVisitor.isPresent()) {
+            VISITORS.remove(removeVisitor.get());
+            logger.info("Пользователь удален");
+        } else {
+            logger.warn("Такого пользователя не существует");
         }
     }
 

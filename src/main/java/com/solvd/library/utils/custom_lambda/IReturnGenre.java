@@ -1,4 +1,4 @@
-package com.solvd.library.utils;
+package com.solvd.library.utils.custom_lambda;
 
 @FunctionalInterface
 public interface IReturnGenre<T, R> {

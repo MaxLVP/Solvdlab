@@ -9,6 +9,8 @@ import com.solvd.library.exceptions.PeriodicalNotFoundException;
 import java.util.Scanner;
 import java.util.function.ToIntFunction;
 
+import static com.solvd.library.library.ReturnPeriodicals.returnPeriodical;
+import static com.solvd.library.menu.MenuAddBookToLibrary.addBook;
 import static com.solvd.library.menu.MenuChangeData.changeVisitorDataMenu;
 import static com.solvd.library.menu.MenuChangeVisitor.changeVisitor;
 import static com.solvd.library.menu.MenuExitLibrary.exitLibrary;
@@ -27,28 +29,32 @@ public class Menu {
         logger.info("Что вы хотите сделать?");
         logger.info("1. Взять книгу ");
         logger.info("2. Сдать книгу ");
-        logger.info("3. Взять журнал, газету или методичку ");
-        logger.info("4. Удалить себя из базы данных ");
-        logger.info("5. Изменить данные");
-        logger.info("6. Взять комикс");
-        logger.info("7. Вернуть комикс");
-        logger.info("8. Выйти из системы");
-        logger.info("9. Узнать общее количество книг");
-        logger.info("10. Уйти из библиотеки");
+        logger.info("3. Взять комикс");
+        logger.info("4. Вернуть комикс");
+        logger.info("5. Взять переодику");
+        logger.info("6. Вернуть периодику");
+        logger.info("7. Изменить свои данные");
+        logger.info("8. Удалить себя из базы данных ");
+        logger.info("9. Выйти из системы");
+        logger.info("10. Узнать общее количество книг");
+        logger.info("11. Добавить новую книгу в библиотеку");
+        logger.info("12. Уйти из библиотеки");
         Scanner scan = new Scanner(System.in);
         ToIntFunction<String> toIntFunction = Integer::parseInt;
         int i = toIntFunction.applyAsInt(scan.nextLine());
         switch (i) {
             case 1 -> takeBook(card);
             case 2 -> returnBook(card);
-            case 3 -> takePeriodical(card);
-            case 4 -> removeVisitor(card);
-            case 5 -> changeVisitorDataMenu(card);
-            case 6 -> takeComics(card);
-            case 7 -> returnComics(card);
-            case 8 -> changeVisitor(card, authentication);
-            case 9 -> getSizeOfLibrary();
-            case 10 -> exit = exitLibrary(card);
+            case 3 -> takeComics(card);
+            case 4 -> returnComics(card);
+            case 5 -> takePeriodical(card);
+            case 6 -> returnPeriodical(card.getPeriodicals());
+            case 7 -> changeVisitorDataMenu(card);
+            case 8 -> removeVisitor(card);
+            case 9 -> changeVisitor(card, authentication);
+            case 10 -> getSizeOfLibrary();
+            case 11 -> addBook();
+            case 12 -> exit = exitLibrary(card);
         }
         return exit;
     }

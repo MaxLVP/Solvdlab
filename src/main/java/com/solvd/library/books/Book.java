@@ -6,55 +6,55 @@ import java.util.Objects;
 
 public class Book {
     static final MyLogger logger = MyLogger.getInstance();
-    private String name;
-    private String author;
-    private int pages;
-    private Genre genre;
+    private final String NAME;
+    private final String AUTHOR;
+    private final int PAGES;
+    private final Genre GENRE;
 
     public Book(String name, String author, int pages, Genre genre) {
-        this.name = name;
-        this.author = author;
-        this.pages = pages;
-        this.genre = genre;
+        this.NAME = name;
+        this.AUTHOR = author;
+        this.PAGES = pages;
+        this.GENRE = genre;
     }
 
     public String getName() {
-        return name;
+        return NAME;
     }
 
     public String getAuthor() {
-        return author;
+        return AUTHOR;
     }
 
     public int getPages() {
-        return pages;
+        return PAGES;
     }
 
     public Genre getGenre() {
-        return genre;
+        return GENRE;
     }
 
-    public final void readBook() {
-        logger.info("Книга " + this.name + " была прочитана.");
+    public final void returnBook() {
+        logger.info("Книга " + this.NAME + " была добавлена в раздел " + GENRE.getGenre());
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return pages == book.pages && Objects.equals(name, book.name) && Objects.equals(author, book.author);
+        return PAGES == book.PAGES && Objects.equals(NAME, book.NAME) && Objects.equals(AUTHOR, book.AUTHOR);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, author, pages);
+        return Objects.hash(NAME, AUTHOR, PAGES);
     }
 
     @Override
     public String toString() {
         return "Книга под названием: '" + this.getName() + '\'' +
                 ", автор: '" + this.getAuthor() + '\'' +
-                ", жанр: '" + genre.getGenre() + '\'' +
+                ", жанр: '" + GENRE.getGenre() + '\'' +
                 ", количество страниц: " + this.getPages();
     }
 }

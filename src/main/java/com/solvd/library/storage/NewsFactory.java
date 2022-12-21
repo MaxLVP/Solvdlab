@@ -2,8 +2,10 @@ package com.solvd.library.storage;
 
 import com.solvd.library.MyLogger;
 import com.solvd.library.others.Newspaper;
-import com.solvd.library.utils.IConvert;
+import com.solvd.library.utils.custom_lambda.IConvert;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class NewsFactory {
@@ -19,18 +21,19 @@ public class NewsFactory {
 
     public static void addNews(Newspaper newspaper) {
         NEWS.add(newspaper);
-        logger.info(NEWS);
+    }
+
+    public static void getNewsNames() {
+        List<String> newsNames = NEWS.stream().map(news -> StringUtils.upperCase(news.getName())).toList();
+        logger.info("Газеты: " + newsNames);
     }
 
     public static void getNewsCount() {
-        IConvert<Integer, String> convert = size -> size.toString();
+        IConvert<Integer, String> convert = Object::toString;
         logger.info("Количество газет: " + convert.convert(NEWS.size()));
     }
 
     public static Newspaper getNews() {
-        logger.info(NEWS);
-        Newspaper news = NEWS.poll();
-        logger.info(NEWS);
-        return news;
+        return NEWS.poll();
     }
 }

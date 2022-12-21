@@ -9,7 +9,7 @@ import com.solvd.library.exceptions.GenreNotFoundException;
 import java.util.Scanner;
 
 import static com.solvd.library.storage.BooksFactory.chooseBook;
-import static com.solvd.library.utils.ReturnVisitorGenre.returnGenre;
+import static com.solvd.library.utils.ReturnVisitorGenreUtil.returnGenre;
 
 public class Suggestion {
     static final MyLogger logger = MyLogger.getInstance();

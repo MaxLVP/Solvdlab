@@ -1,6 +1,6 @@
 package com.solvd.library.library;
 
-import com.solvd.library.utils.IStartStaticFunction;
+import com.solvd.library.utils.custom_lambda.IStartStaticFunction;
 
 import static com.solvd.library.storage.BooksFactory.fillInStorage;
 import static com.solvd.library.storage.CardsFactory.fillInCard;

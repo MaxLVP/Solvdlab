@@ -6,6 +6,7 @@ import com.solvd.library.visitors.Visitor;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Optional;
 
 import static com.solvd.library.storage.BooksFactory.chooseBook;
 
@@ -29,11 +30,11 @@ public class CardsFactory {
     }
 
     public static Card returnCard(Visitor person) {
-        for (String phone : CARDS.keySet()) {
-            if (phone.equals(person.getPhone())) {
-                return CARDS.get(phone);
-            }
+        Optional<String> visitorPhone = CARDS.keySet().stream().filter(phone -> phone.equals(person.getPhone())).findFirst();
+        if (visitorPhone.isEmpty()) {
+            return null;
+        } else {
+         return CARDS.get(visitorPhone.get());
         }
-        return null;
     }
 }

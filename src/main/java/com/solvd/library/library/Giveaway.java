@@ -5,7 +5,6 @@ import com.solvd.library.cards.Card;
 import com.solvd.library.exceptions.PeriodicalNotFoundException;
 import com.solvd.library.others.*;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static com.solvd.library.library.ReturnPeriodicals.returnPeriodical;
@@ -20,7 +19,7 @@ public class Giveaway {
             logger.info("У вас не возвращена переодика, верните предыдущую");
             returnPeriodical(card.getPeriodicals());
         }
-        logger.info("Что вы хотите получить? (газета, журнал, методичка)");
+        logger.info("Что вы хотите получить? (газета, журнал)");
         Scanner scanner = new Scanner(System.in);
         String type = "";
         if (scanner.hasNextLine()) {
@@ -31,23 +30,10 @@ public class Giveaway {
         Periodicals periodical;
         switch (type) {
             case "газета" -> periodical = giveNewspaper();
-            case "методичка" -> periodical = giveManual();
             case "журнал" -> periodical = giveMagazine();
             default -> throw new PeriodicalNotFoundException();
         }
         return periodical;
-    }
-
-    public ArrayList<String> getInfo() {
-        logger.info("Введите название и жанр");
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<String> info = new ArrayList<>();
-        String current = scanner.nextLine();
-        while (!current.equals("")) {
-            info.add(current);
-            current = scanner.nextLine();
-        }
-        return info;
     }
 
     public Newspaper giveNewspaper() {
@@ -55,11 +41,13 @@ public class Giveaway {
     }
 
     public Magazine giveMagazine() {
-        return getMagazine();
+        logger.info("Введите название журнала");
+        Scanner scanner = new Scanner(System.in);
+        Magazine magazine = getMagazine(scanner.nextLine());
+        if (magazine == null) {
+            logger.info("Такого журнала нет");
+        }
+        return magazine;
     }
 
-    public Manuals giveManual() {
-        ArrayList<String> info = getInfo();
-        return new Manuals(info.get(0), info.get(1));
-    }
 }

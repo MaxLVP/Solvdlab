@@ -4,10 +4,13 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.books.Book;
 import com.solvd.library.books.Genre;
 import com.solvd.library.exceptions.LibraryBooksNotFound;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 import java.util.function.Function;
+
+import static com.solvd.library.utils.RandomUtils.returnRandomIntWithSize;
 
 public class BooksFactory {
     private final static ArrayList<Book> BOOK_LIST = new ArrayList<>();
@@ -46,12 +49,7 @@ public class BooksFactory {
     }
 
     public static Book chooseBook(Genre genre) {
-        ArrayList<Book> genreBooks = new ArrayList<>();
-        for (Book book : BOOK_LIST) {
-            if (book.getGenre() == genre) {
-                genreBooks.add(book);
-            }
-        }
+        List<Book> genreBooks = BOOK_LIST.stream().filter(book -> book.getGenre() == genre).toList();
         try {
             Book book = chooseBookForGenre(genreBooks);
             BOOK_LIST.remove(book);
@@ -62,17 +60,20 @@ public class BooksFactory {
         }
     }
 
-    public static Book chooseBookForGenre(ArrayList<Book> genreBooks) throws LibraryBooksNotFound {
+    public static Book chooseBookForGenre(List<Book> genreBooks) throws LibraryBooksNotFound {
         if (genreBooks.size() == 0) {
             throw new LibraryBooksNotFound();
         }
-        Random random = new Random();
-        int i = random.nextInt(genreBooks.size());
-        return genreBooks.get(i);
+        return genreBooks.get(returnRandomIntWithSize(genreBooks.size()));
+    }
+
+    public static void getBooksNames() {
+        List<String> booksNames = BOOK_LIST.stream().map(book -> StringUtils.upperCase(book.getName())).toList();
+        logger.info("Книги: " + booksNames);
     }
 
     public static void getBooksCount() {
-        Function<Integer, String> convert = x -> String.valueOf(x);
+        Function<Integer, String> convert = String::valueOf;
         logger.info("Количество книг: " + convert.apply(BOOK_LIST.size()));
     }
 

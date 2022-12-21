@@ -2,11 +2,16 @@ package com.solvd.library.storage;
 
 import com.solvd.library.MyLogger;
 import com.solvd.library.books.Genre;
+import com.solvd.library.exceptions.LibraryBooksNotFound;
 import com.solvd.library.others.Comics;
 import com.solvd.library.others.SortByNameComics;
-import com.solvd.library.utils.IConvert;
+import com.solvd.library.utils.custom_lambda.IConvert;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.solvd.library.utils.RandomUtils.returnRandomIntWithSize;
 
 public class ComicsFactory {
     static final MyLogger logger = MyLogger.getInstance();
@@ -21,24 +26,35 @@ public class ComicsFactory {
 
     public static void addComics(Comics comic) {
         COMICS.add(comic);
-        logger.info(COMICS);
     }
 
     public static Comics chooseComics(Genre genre) {
         COMICS.sort(new SortByNameComics());
-        logger.info(COMICS);
-        for (Comics com : COMICS) {
-            if (com.getGenre() == genre) {
-                COMICS.remove(com);
-                logger.info(COMICS);
-                return com;
-            }
+        List<Comics> comics = COMICS.stream().filter(com -> com.getGenre() == genre).toList();
+        try {
+            Comics comic = chooseComicsForGenre(comics);
+            COMICS.remove(comic);
+            return comic;
+        } catch (LibraryBooksNotFound ex) {
+            logger.warn(ex.getMessage());
+            return null;
         }
-        return null;
+    }
+
+    public static Comics chooseComicsForGenre(List<Comics> comics) throws LibraryBooksNotFound {
+        if (comics.size() == 0) {
+            throw new LibraryBooksNotFound();
+        }
+        return comics.get(returnRandomIntWithSize(comics.size()));
+    }
+
+    public static void getComicsNames() {
+        List<String> comicsNames = COMICS.stream().map(comics -> StringUtils.upperCase(comics.getName())).toList();
+        logger.info("Комиксы: " + comicsNames);
     }
 
     public static void getComicsCount() {
-        IConvert<Integer, String> convert = size -> size.toString();
+        IConvert<Integer, String> convert = Object::toString;
         logger.info("Количество комиксов: " + convert.convert(COMICS.size()));
     }
 }

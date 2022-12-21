@@ -2,9 +2,11 @@ package com.solvd.library.storage;
 
 import com.solvd.library.MyLogger;
 import com.solvd.library.others.Magazine;
-import com.solvd.library.utils.IConvert;
+import com.solvd.library.utils.custom_lambda.IConvert;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.Random;
+import java.util.List;
+import java.util.Optional;
 
 public class MagazinesFactory {
     static final MyLogger logger = MyLogger.getInstance();
@@ -17,21 +19,24 @@ public class MagazinesFactory {
     }
     public static void addMagazine(Magazine mag) {
         LIST.add(0, mag);
-        logger.info(LIST);
     }
 
-    public static Magazine getMagazine() {
-        logger.info(LIST);
-        Random random = new Random();
-        int index = random.nextInt(LIST.size());
-        Magazine magazine = LIST.get(index);
-        LIST.remove(magazine);
-        logger.info(LIST);
-        return magazine;
+    public static Magazine getMagazine(String name) {
+        Optional<Magazine> magazineName = LIST.stream().filter(magazine -> magazine.getName().equals(name)).findFirst();
+        if (magazineName.isEmpty()) {
+            return null;
+        }
+        LIST.remove(magazineName.get());
+        return magazineName.get();
+    }
+
+    public static void getMagazinesNames() {
+        List<String> magazinesNames = LIST.stream().map(magazine -> StringUtils.upperCase(magazine.getName())).toList();
+        logger.info("Журналы: " + magazinesNames);
     }
 
     public static void getMagazinesCount() {
-        IConvert<Integer, String> convert = size -> size.toString();
+        IConvert<Integer, String> convert = Object::toString;
         logger.info("Количество журналов: " + convert.convert(LIST.size()));
     }
 }

@@ -1,7 +1,7 @@
 package com.solvd.library.visitors;
 
 import com.solvd.library.MyLogger;
-import com.solvd.library.utils.IReturnObject;
+import com.solvd.library.utils.custom_lambda.IReturnObject;
 
 import java.util.Scanner;
 
