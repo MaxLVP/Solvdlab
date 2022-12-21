@@ -31,7 +31,8 @@ public class MagazinesFactory {
     }
 
     public static void getMagazinesNames() {
-        List<String> magazinesNames = LIST.stream().map(magazine -> StringUtils.upperCase(magazine.getName())).toList();
+        List<String> magazinesNames = LIST.stream().map(magazine ->
+                new Magazine(StringUtils.upperCase(magazine.getName()), magazine.getTopic()).toString()).toList();
         logger.info("Журналы: " + magazinesNames);
     }
 

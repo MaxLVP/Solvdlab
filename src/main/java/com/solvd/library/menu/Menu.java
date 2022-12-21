@@ -37,8 +37,9 @@ public class Menu {
         logger.info("8. Удалить себя из базы данных ");
         logger.info("9. Выйти из системы");
         logger.info("10. Узнать общее количество книг");
-        logger.info("11. Добавить новую книгу в библиотеку");
-        logger.info("12. Уйти из библиотеки");
+        logger.info("11. Получить информацию по наличию книг любимого жанра");
+        logger.info("12. Добавить новую книгу в библиотеку");
+        logger.info("13. Уйти из библиотеки");
         Scanner scan = new Scanner(System.in);
         ToIntFunction<String> toIntFunction = Integer::parseInt;
         int i = toIntFunction.applyAsInt(scan.nextLine());
@@ -53,8 +54,8 @@ public class Menu {
             case 8 -> removeVisitor(card);
             case 9 -> changeVisitor(card, authentication);
             case 10 -> getSizeOfLibrary();
-            case 11 -> addBook();
-            case 12 -> exit = exitLibrary(card);
+            case 12 -> addBook();
+            case 13 -> exit = exitLibrary(card);
         }
         return exit;
     }
