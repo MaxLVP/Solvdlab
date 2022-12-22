@@ -4,6 +4,7 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.books.Book;
 import com.solvd.library.cards.Card;
 import com.solvd.library.exceptions.PersonBooksNotFound;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class Returning {
         Scanner scan = new Scanner(System.in);
         String answer = scan.nextLine();
         Book book = null;
-        if ("да".equals(answer)) {
+        if (StringUtils.lowerCase(answer).contains("д")) {
             book = new Suggestion().suggest(card);
         }
         return book;

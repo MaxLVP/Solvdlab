@@ -35,11 +35,7 @@ public class VisitorFactory {
     }
 
     public static Visitor chooseVisitor(String phone) {
-        for (Visitor visitor : VISITORS) {
-            if (visitor.getPhone().equals(phone)) {
-                return visitor;
-            }
-        }
-        return null;
+        Optional<Visitor> neededVisitor = VISITORS.stream().filter(person -> person.getPhone().equals(phone)).findFirst();
+        return neededVisitor.orElse(null);
     }
 }

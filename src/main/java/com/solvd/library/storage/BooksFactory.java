@@ -7,13 +7,12 @@ import com.solvd.library.exceptions.LibraryBooksNotFound;
 import com.solvd.library.visitors.Visitor;
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 import static com.solvd.library.utils.RandomUtils.returnRandomIntWithSize;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toSet;
 
 public class BooksFactory {
     private final static ArrayList<Book> BOOK_LIST = new ArrayList<>();
@@ -71,7 +70,8 @@ public class BooksFactory {
     }
 
     public static void getAllBooks() {
-        LOGGER.info(BOOK_LIST);
+        Map<Genre, Set<Book>> allBooks = BOOK_LIST.stream().collect(groupingBy(Book::getGenre, toSet()));
+        LOGGER.info(allBooks);
     }
 
     public static void getBooksNames(Visitor visitor) {

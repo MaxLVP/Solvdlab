@@ -13,9 +13,7 @@ public class CardsFactory {
     private final static HashMap<String, Card> CARDS = new HashMap<>();
 
     public static void fillInCard(HashSet<Visitor> persons) {
-        for (Visitor person : persons) {
-            CARDS.put(person.getPhone(), new Card(person, chooseBook(person.getGenre()), null, null));
-        }
+        persons.forEach(person -> CARDS.put(person.getPhone(), new Card(person, chooseBook(person.getGenre()), null, null)));
     }
 
     public static void addCard(Card card) {

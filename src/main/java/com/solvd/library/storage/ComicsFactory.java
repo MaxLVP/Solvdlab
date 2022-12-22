@@ -49,7 +49,7 @@ public class ComicsFactory {
 
     public static void getComicsNames() {
         List<String> comicsNames = COMICS.stream().map(comics -> StringUtils.capitalize(comics.getName())).toList();
-        LOGGER.info("Комиксы доступные по вашему жанру: " + comicsNames);
+        LOGGER.info("Комиксы : " + comicsNames);
     }
 
     public static void getComicsCount() {
