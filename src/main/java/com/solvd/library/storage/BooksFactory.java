@@ -7,7 +7,9 @@ import com.solvd.library.exceptions.LibraryBooksNotFound;
 import com.solvd.library.visitors.Visitor;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -68,9 +70,13 @@ public class BooksFactory {
         return genreBooks.get(returnRandomIntWithSize(genreBooks.size()));
     }
 
+    public static void getAllBooks() {
+        LOGGER.info(BOOK_LIST);
+    }
+
     public static void getBooksNames(Visitor visitor) {
-        List<String> booksNames = BOOK_LIST.stream().filter(book -> book.getGenre().equals(visitor.getGenre()))
-                .map(book -> StringUtils.capitalize(book.getName())).toList();
+        List<ArrayList<String>> booksNames = BOOK_LIST.stream().filter(book -> book.getGenre().equals(visitor.getGenre()))
+                .map(book -> new ArrayList<>(Arrays.asList(StringUtils.capitalize(book.getName()), book.getAuthor()))).toList();
         LOGGER.info("Книги доступные по вашему жанру: " + booksNames);
     }
 

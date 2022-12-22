@@ -15,6 +15,7 @@ import static com.solvd.library.menu.MenuAddBookToLibrary.addComicsWithReflectio
 import static com.solvd.library.menu.MenuChangeData.changeVisitorDataMenu;
 import static com.solvd.library.menu.MenuChangeVisitor.changeVisitor;
 import static com.solvd.library.menu.MenuExitLibrary.exitLibrary;
+import static com.solvd.library.menu.MenuGetSize.getBooksFromGenre;
 import static com.solvd.library.menu.MenuGetSize.getSizeOfLibrary;
 import static com.solvd.library.menu.MenuRemoveVisitor.removeVisitor;
 import static com.solvd.library.menu.MenuReturnBook.returnBook;
@@ -40,7 +41,7 @@ public class Menu {
         LOGGER.info("10. Узнать общее количество книг");
         LOGGER.info("11. Получить информацию по наличию книг любимого жанра");
         LOGGER.info("12. Добавить новую книгу в библиотеку");
-        LOGGER.info("13. добавить новый комикс в библиотеку");
+        LOGGER.info("13. Добавить новый комикс в библиотеку");
         LOGGER.info("14. Уйти из библиотеки");
         Scanner scan = new Scanner(System.in);
         ToIntFunction<String> toIntFunction = Integer::parseInt;
@@ -55,7 +56,8 @@ public class Menu {
             case 7 -> changeVisitorDataMenu(card);
             case 8 -> removeVisitor(card);
             case 9 -> changeVisitor(card, authentication);
-            case 10 -> getSizeOfLibrary(card);
+            case 10 -> getSizeOfLibrary();
+            case 11 -> getBooksFromGenre(card);
             case 12 -> addBookWithReflection();
             case 13 -> addComicsWithReflection();
             case 14 -> exit = exitLibrary(card);
