@@ -4,15 +4,15 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.cards.Card;
 
 public class MenuExitLibrary {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public static boolean exitLibrary(Card card) {
         if (card.getPeriodicals() != null) {
-            logger.info("У вас не сдана периодика " + card.getPeriodicals().getName());
+            LOGGER.info("У вас не сдана периодика " + card.getPeriodicals().getName());
             card.getPeriodicals().returnPeriodicals(card.getPeriodicals());
         }
         boolean exit = true;
-        logger.info("Всего хорошего");
+        LOGGER.info("Всего хорошего");
         return exit;
     }
 }

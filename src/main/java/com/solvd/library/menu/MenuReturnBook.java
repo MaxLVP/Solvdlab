@@ -3,19 +3,18 @@ package com.solvd.library.menu;
 import com.solvd.library.MyLogger;
 import com.solvd.library.books.Book;
 import com.solvd.library.cards.Card;
-import com.solvd.library.exceptions.GenreNotFoundException;
-import com.solvd.library.library.Adding;
+import com.solvd.library.library.Returning;
 
 public class MenuReturnBook {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
-    public static void returnBook(Card card) throws GenreNotFoundException {
-        Book books = new Adding().returnAndTakeBook(card);
+    public static void returnBook(Card card) {
+        Book books = new Returning().returnAndTakeBook(card);
         if (books == null) {
-            logger.info("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
+            LOGGER.info("Пользователю " + card.getVisitor().getName() + " ничего не выдано");
         } else {
-            logger.info("Взята " + books);
+            LOGGER.info("Взята " + books);
         }
-        logger.info(card);
+        LOGGER.info(card);
     }
 }

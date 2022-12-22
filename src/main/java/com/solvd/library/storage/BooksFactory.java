@@ -4,6 +4,7 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.books.Book;
 import com.solvd.library.books.Genre;
 import com.solvd.library.exceptions.LibraryBooksNotFound;
+import com.solvd.library.visitors.Visitor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import static com.solvd.library.utils.RandomUtils.returnRandomIntWithSize;
 
 public class BooksFactory {
     private final static ArrayList<Book> BOOK_LIST = new ArrayList<>();
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public static void fillInStorage() {
         BOOK_LIST.add(new Book("Смерть на Ниле", "Агата Кристи", 340, Genre.DETECTIVE));
@@ -55,7 +56,7 @@ public class BooksFactory {
             BOOK_LIST.remove(book);
             return book;
         } catch (LibraryBooksNotFound ex) {
-            logger.warn(ex.getMessage());
+            LOGGER.warn(ex.getMessage());
             return null;
         }
     }
@@ -67,14 +68,15 @@ public class BooksFactory {
         return genreBooks.get(returnRandomIntWithSize(genreBooks.size()));
     }
 
-    public static void getBooksNames() {
-        List<String> booksNames = BOOK_LIST.stream().map(book -> StringUtils.upperCase(book.getName())).toList();
-        logger.info("Книги: " + booksNames);
+    public static void getBooksNames(Visitor visitor) {
+        List<String> booksNames = BOOK_LIST.stream().filter(book -> book.getGenre().equals(visitor.getGenre()))
+                .map(book -> StringUtils.capitalize(book.getName())).toList();
+        LOGGER.info("Книги доступные по вашему жанру: " + booksNames);
     }
 
     public static void getBooksCount() {
         Function<Integer, String> convert = String::valueOf;
-        logger.info("Количество книг: " + convert.apply(BOOK_LIST.size()));
+        LOGGER.info("Общее количество книг: " + convert.apply(BOOK_LIST.size()));
     }
 
 }

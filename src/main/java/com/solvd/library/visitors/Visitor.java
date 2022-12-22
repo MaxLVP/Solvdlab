@@ -1,14 +1,19 @@
 package com.solvd.library.visitors;
 
+import com.solvd.library.MyLogger;
+import com.solvd.library.books.Genre;
+import com.solvd.library.exceptions.GenreNotFoundException;
+
 import java.util.Objects;
 
 public final class Visitor {
+    static final MyLogger LOGGER = MyLogger.getInstance();
     private final String NAME;
     private String phone;
     private final String SECOND_NAME;
-    private String genre;
+    private Genre genre;
 
-    public Visitor(String name, String phone, String secondName, String genre) {
+    public Visitor(String name, String phone, String secondName, Genre genre) {
         this.NAME = name;
         this.phone = phone;
         this.SECOND_NAME = secondName;
@@ -31,12 +36,17 @@ public final class Visitor {
         return SECOND_NAME;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
     public void setGenre(String genre) {
-        this.genre = genre;
+        try {
+            this.genre = Genre.getGenreFromString(genre);
+        } catch (GenreNotFoundException ex) {
+            LOGGER.warn(ex.getMessage());
+            this.genre = null;
+        }
     }
 
     @Override
@@ -55,6 +65,6 @@ public final class Visitor {
     public String toString() {
         return "Посетитель " + NAME + " " + SECOND_NAME +
                 ", телефон: " + phone + ", любимый жанр: '" +
-                genre + '\'';
+                genre.getGenre() + '\'';
     }
 }

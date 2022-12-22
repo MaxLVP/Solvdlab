@@ -1,28 +1,20 @@
 package com.solvd.library.others;
 
 public abstract class Periodicals implements IReading{
-    private String topic;
-    private String name;
+    private final String TOPIC;
+    private final String NAME;
 
     public Periodicals(String topic, String name) {
-        this.topic = topic;
-        this.name = name;
+        this.TOPIC = topic;
+        this.NAME = name;
     }
 
     public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
+        return TOPIC;
     }
 
     public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return NAME;
     }
 
     @Override

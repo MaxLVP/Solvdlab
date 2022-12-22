@@ -6,10 +6,10 @@ import com.solvd.library.visitors.Removal;
 import com.solvd.library.visitors.Visitor;
 
 public class MenuRemoveVisitor {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public static void removeVisitor(Card card) {
         Visitor person = new Removal().remove(card.getVisitor());
-        logger.info("Пользователь с номером телефона " + person.getPhone() + " удален");
+        LOGGER.info("Пользователь с номером телефона " + person.getPhone() + " удален");
     }
 }

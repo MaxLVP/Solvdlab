@@ -9,18 +9,18 @@ import static com.solvd.library.library.FillInLibrary.fillInLibrary;
 import static com.solvd.library.menu.Menu.menu;
 
 public class Main {
-    static final MyLogger logger = MyLogger.getInstance();
-    private final static Auth authentication = new Auth();
+    static final MyLogger LOGGER = MyLogger.getInstance();
+    private final static Auth AUTHENTICATION = new Auth();
 
     public static void main(String[] args) throws GenreNotFoundException, PeriodicalNotFoundException {
         fillInLibrary();
-        logger.info("Добро пожаловать");
-        Card card = authentication.auth();
-        logger.info("В систему вошел пользователь: " + card.getVisitor());
-        logger.info(card);
-        while (!menu(card, authentication, false)) {
-            menu(card, authentication, false);
+        LOGGER.info("Добро пожаловать");
+        Card card = AUTHENTICATION.auth();
+        LOGGER.info("В систему вошел пользователь: " + card.getVisitor());
+        LOGGER.info(card);
+        while (!menu(card, AUTHENTICATION, false)) {
+            menu(card, AUTHENTICATION, false);
         }
-        logger.info("Выход из программы");
+        LOGGER.info("Выход из программы");
     }
 }

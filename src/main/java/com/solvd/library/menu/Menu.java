@@ -10,7 +10,8 @@ import java.util.Scanner;
 import java.util.function.ToIntFunction;
 
 import static com.solvd.library.library.ReturnPeriodicals.returnPeriodical;
-import static com.solvd.library.menu.MenuAddBookToLibrary.addBook;
+import static com.solvd.library.menu.MenuAddBookToLibrary.addBookWithReflection;
+import static com.solvd.library.menu.MenuAddBookToLibrary.addComicsWithReflection;
 import static com.solvd.library.menu.MenuChangeData.changeVisitorDataMenu;
 import static com.solvd.library.menu.MenuChangeVisitor.changeVisitor;
 import static com.solvd.library.menu.MenuExitLibrary.exitLibrary;
@@ -23,23 +24,24 @@ import static com.solvd.library.menu.MenuTakeComics.takeComics;
 import static com.solvd.library.menu.MenuTakePeriodical.takePeriodical;
 
 public class Menu {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public static boolean menu(Card card, Auth authentication, boolean exit) throws GenreNotFoundException, PeriodicalNotFoundException {
-        logger.info("Что вы хотите сделать?");
-        logger.info("1. Взять книгу ");
-        logger.info("2. Сдать книгу ");
-        logger.info("3. Взять комикс");
-        logger.info("4. Вернуть комикс");
-        logger.info("5. Взять переодику");
-        logger.info("6. Вернуть периодику");
-        logger.info("7. Изменить свои данные");
-        logger.info("8. Удалить себя из базы данных ");
-        logger.info("9. Выйти из системы");
-        logger.info("10. Узнать общее количество книг");
-        logger.info("11. Получить информацию по наличию книг любимого жанра");
-        logger.info("12. Добавить новую книгу в библиотеку");
-        logger.info("13. Уйти из библиотеки");
+        LOGGER.info("Что вы хотите сделать?");
+        LOGGER.info("1. Взять книгу ");
+        LOGGER.info("2. Сдать книгу ");
+        LOGGER.info("3. Взять комикс");
+        LOGGER.info("4. Вернуть комикс");
+        LOGGER.info("5. Взять переодику");
+        LOGGER.info("6. Вернуть периодику");
+        LOGGER.info("7. Изменить свои данные");
+        LOGGER.info("8. Удалить себя из базы данных ");
+        LOGGER.info("9. Выйти из системы");
+        LOGGER.info("10. Узнать общее количество книг");
+        LOGGER.info("11. Получить информацию по наличию книг любимого жанра");
+        LOGGER.info("12. Добавить новую книгу в библиотеку");
+        LOGGER.info("13. добавить новый комикс в библиотеку");
+        LOGGER.info("14. Уйти из библиотеки");
         Scanner scan = new Scanner(System.in);
         ToIntFunction<String> toIntFunction = Integer::parseInt;
         int i = toIntFunction.applyAsInt(scan.nextLine());
@@ -53,9 +55,10 @@ public class Menu {
             case 7 -> changeVisitorDataMenu(card);
             case 8 -> removeVisitor(card);
             case 9 -> changeVisitor(card, authentication);
-            case 10 -> getSizeOfLibrary();
-            case 12 -> addBook();
-            case 13 -> exit = exitLibrary(card);
+            case 10 -> getSizeOfLibrary(card);
+            case 12 -> addBookWithReflection();
+            case 13 -> addComicsWithReflection();
+            case 14 -> exit = exitLibrary(card);
         }
         return exit;
     }

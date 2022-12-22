@@ -9,14 +9,14 @@ import static com.solvd.library.storage.MagazinesFactory.addMagazine;
 import static com.solvd.library.storage.NewsFactory.addNews;
 
 public class ReturnPeriodicals {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public static void returnPeriodical(Periodicals per) {
         if (per instanceof Newspaper) {
-            logger.info("Газета возвращена");
+            LOGGER.info("Газета возвращена");
             addNews((Newspaper) per);
         } else if (per instanceof Magazine) {
-            logger.info("Журнал возвращен");
+            LOGGER.info("Журнал возвращен");
             addMagazine((Magazine) per);
         }
     }

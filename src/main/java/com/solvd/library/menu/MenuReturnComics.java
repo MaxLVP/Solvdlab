@@ -7,12 +7,12 @@ import com.solvd.library.others.Comics;
 import static com.solvd.library.storage.ComicsFactory.addComics;
 
 public class MenuReturnComics {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public static void returnComics(Card card) {
         Comics comic = card.getComics();
         if (comic != null ) {
-            logger.info("Возвращаен комикс" + comic);
+            LOGGER.info("Возвращаен комикс" + comic);
             addComics(comic);
         }
     }

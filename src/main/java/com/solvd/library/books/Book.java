@@ -5,7 +5,7 @@ import com.solvd.library.MyLogger;
 import java.util.Objects;
 
 public class Book {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
     private final String NAME;
     private final String AUTHOR;
     private final int PAGES;
@@ -35,7 +35,7 @@ public class Book {
     }
 
     public final void returnBook() {
-        logger.info("Книга " + this.NAME + " была добавлена в раздел " + GENRE.getGenre());
+        LOGGER.info("Книга " + this.NAME + " была добавлена в раздел " + GENRE.getGenre());
     }
 
     @Override

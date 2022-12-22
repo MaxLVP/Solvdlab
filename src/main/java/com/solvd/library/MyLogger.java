@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class MyLogger {
     private static MyLogger instance = null;
-    protected final static Logger logger = LogManager.getLogger(MyLogger.class);
+    protected final static Logger LOGGER = LogManager.getLogger(MyLogger.class);
 
     private MyLogger() {
         super();
@@ -19,14 +19,14 @@ public class MyLogger {
     }
 
     public void info(String msg) {
-        logger.info(msg);
+        LOGGER.info(msg);
     }
 
     public void info(Object obj) {
-        logger.info(obj);
+        LOGGER.info(obj);
     }
 
     public void warn(String msg) {
-        logger.warn(msg);
+        LOGGER.warn(msg);
     }
 }

@@ -5,33 +5,21 @@ import com.solvd.library.MyLogger;
 import static com.solvd.library.storage.NewsFactory.addNews;
 
 public class Newspaper extends Periodicals implements IReading, Comparable<Newspaper>{
-    static final MyLogger logger = MyLogger.getInstance();
-    private final int ID;
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
-    static {
-        String typeName = "Газета";
-        logger.info("Получена " + typeName);
-    }
-
-    public Newspaper(int id, String name, String genre) {
+    public Newspaper(String name, String genre) {
         super(genre, name);
-        this.ID = id;
-    }
-
-    public int getId() {
-        return ID;
     }
 
     @Override
     public int compareTo(Newspaper news) {
-        int anotherId = news.getId();
-        return this.ID - anotherId;
+       return  this.getName().compareTo(news.getName());
     }
 
     @Override
     public void returnPeriodicals(Periodicals periodicals) {
         addNews((Newspaper) periodicals);
-        logger.info(this.getName() + " возвращена");
+        LOGGER.info(this.getName() + " возвращена");
     }
 
     @Override

@@ -1,0 +1,18 @@
+Класс: com.solvd.library.books.Book
+Его суперклас: java.lang.Object
+Его интерфейсы: []
+Поле: LOGGER, его тип: class com.solvd.library.MyLogger, его модификаторы: static final
+Поле: NAME, его тип: class java.lang.String, его модификаторы: private final
+Поле: AUTHOR, его тип: class java.lang.String, его модификаторы: private final
+Поле: PAGES, его тип: int, его модификаторы: private final
+Поле: GENRE, его тип: class com.solvd.library.books.Genre, его модификаторы: private final
+Метод: getName, его параметры: [], его модификаторы: public, его возвращаемый тип: class java.lang.String
+Метод: equals, его параметры: [java.lang.Object arg0], его модификаторы: public, его возвращаемый тип: boolean
+Метод: toString, его параметры: [], его модификаторы: public, его возвращаемый тип: class java.lang.String
+Метод: hashCode, его параметры: [], его модификаторы: public, его возвращаемый тип: int
+Метод: getGenre, его параметры: [], его модификаторы: public, его возвращаемый тип: class com.solvd.library.books.Genre
+Метод: getAuthor, его параметры: [], его модификаторы: public, его возвращаемый тип: class java.lang.String
+Метод: getPages, его параметры: [], его модификаторы: public, его возвращаемый тип: int
+Метод: returnBook, его параметры: [], его модификаторы: public final, его возвращаемый тип: void
+Конструктор: com.solvd.library.books.Book, его параметры: [java.lang.String arg0, java.lang.String arg1, int arg2, com.solvd.library.books.Genre arg3], его модификаторы: public
+

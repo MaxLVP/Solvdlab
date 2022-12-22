@@ -4,7 +4,6 @@ import com.solvd.library.MyLogger;
 import com.solvd.library.books.Book;
 import com.solvd.library.books.Genre;
 import com.solvd.library.cards.Card;
-import com.solvd.library.exceptions.GenreNotFoundException;
 
 import java.util.Scanner;
 
@@ -12,45 +11,20 @@ import static com.solvd.library.storage.BooksFactory.chooseBook;
 import static com.solvd.library.utils.ReturnVisitorGenreUtil.returnGenre;
 
 public class Suggestion {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
-    public Book suggest(Card card) throws GenreNotFoundException {
+    public Book suggest(Card card) {
         if (card.getBooks() == null) {
-            String info = returnGenre(card.getVisitor());
-            switch (info) {
-                case "детектив" -> {
-                    Book book = chooseBook(Genre.DETECTIVE);
-                    card.setBooks(book);
-                    return book;
-                }
-                case "фэнтэзи" -> {
-                    Book book = chooseBook(Genre.FANTASY);
-                    card.setBooks(book);
-                    return book;
-                }
-                case "ужасы" -> {
-                    Book book = chooseBook(Genre.HORROR);
-                    card.setBooks(book);
-                    return book;
-                }
-                case "приключения" -> {
-                    Book book = chooseBook(Genre.ADVENTURE);
-                    card.setBooks(book);
-                    return book;
-                }
-                case "фантастика" -> {
-                    Book book = chooseBook(Genre.FANTASTIC);
-                    card.setBooks(book);
-                    return book;
-                }
-                default -> throw new GenreNotFoundException();
-            }
+            Genre genre = returnGenre(card.getVisitor());
+            Book book = chooseBook(genre);
+            card.setBooks(book);
+            return book;
         }
-        logger.info("У вас уже взята книга, верните предыдующую");
-        logger.info("Хотите вернуть предуыщую? (да, нет)");
+        LOGGER.info("У вас уже взята книга, верните предыдующую");
+        LOGGER.info("Хотите вернуть предуыщую? (да, нет)");
         Scanner scanner = new Scanner(System.in);
         if (scanner.nextLine().equals("да")) {
-            return new Adding().returnAndTakeBook(card);
+            return new Returning().returnAndTakeBook(card);
         }
         else {
             return null;

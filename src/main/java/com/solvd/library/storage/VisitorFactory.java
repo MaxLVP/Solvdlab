@@ -1,6 +1,7 @@
 package com.solvd.library.storage;
 
 import com.solvd.library.MyLogger;
+import com.solvd.library.books.Genre;
 import com.solvd.library.visitors.Visitor;
 
 import java.util.HashSet;
@@ -8,10 +9,10 @@ import java.util.Optional;
 
 public class VisitorFactory {
     private final static HashSet<Visitor> VISITORS = new HashSet<>();
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public static void fillInVisitors() {
-        VISITORS.add(new Visitor("Стивен", "+123456", "Кинг", "ужасы"));
+        VISITORS.add(new Visitor("Стивен", "+123456", "Кинг", Genre.HORROR));
     }
 
     public static HashSet<Visitor> getVisitors() {
@@ -27,9 +28,9 @@ public class VisitorFactory {
         Optional<Visitor> removeVisitor = VISITORS.stream().filter(person -> person.getPhone().equals(visitor.getPhone())).findFirst();
         if (removeVisitor.isPresent()) {
             VISITORS.remove(removeVisitor.get());
-            logger.info("Пользователь удален");
+            LOGGER.info("Пользователь удален");
         } else {
-            logger.warn("Такого пользователя не существует");
+            LOGGER.warn("Такого пользователя не существует");
         }
     }
 

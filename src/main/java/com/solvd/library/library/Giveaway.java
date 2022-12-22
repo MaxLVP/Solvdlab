@@ -12,20 +12,20 @@ import static com.solvd.library.storage.MagazinesFactory.getMagazine;
 import static com.solvd.library.storage.NewsFactory.getNews;
 
 public class Giveaway {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
 
     public Periodicals giveaway(Card card) throws PeriodicalNotFoundException {
         if (card.getPeriodicals() != null) {
-            logger.info("У вас не возвращена переодика, верните предыдущую");
+            LOGGER.info("У вас не возвращена переодика, верните предыдущую");
             returnPeriodical(card.getPeriodicals());
         }
-        logger.info("Что вы хотите получить? (газета, журнал)");
+        LOGGER.info("Что вы хотите получить? (газета, журнал)");
         Scanner scanner = new Scanner(System.in);
         String type = "";
         if (scanner.hasNextLine()) {
             type = scanner.nextLine();
         } else {
-            logger.warn("Вы не ввели что хотите получить");
+            LOGGER.warn("Вы не ввели что хотите получить");
         }
         Periodicals periodical;
         switch (type) {
@@ -41,11 +41,11 @@ public class Giveaway {
     }
 
     public Magazine giveMagazine() {
-        logger.info("Введите название журнала");
+        LOGGER.info("Введите название журнала");
         Scanner scanner = new Scanner(System.in);
         Magazine magazine = getMagazine(scanner.nextLine());
         if (magazine == null) {
-            logger.info("Такого журнала нет");
+            LOGGER.info("Такого журнала нет");
         }
         return magazine;
     }

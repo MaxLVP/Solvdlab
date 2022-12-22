@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MagazinesFactory {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
     private static final MyLinkedList<Magazine> LIST = new MyLinkedList<>();
 
     public static void fillInMagazines() {
@@ -33,11 +33,11 @@ public class MagazinesFactory {
     public static void getMagazinesNames() {
         List<String> magazinesNames = LIST.stream().map(magazine ->
                 new Magazine(StringUtils.upperCase(magazine.getName()), magazine.getTopic()).toString()).toList();
-        logger.info("Журналы: " + magazinesNames);
+        LOGGER.info("Журналы: " + magazinesNames);
     }
 
     public static void getMagazinesCount() {
         IConvert<Integer, String> convert = Object::toString;
-        logger.info("Количество журналов: " + convert.convert(LIST.size()));
+        LOGGER.info("Количество журналов: " + convert.convert(LIST.size()));
     }
 }

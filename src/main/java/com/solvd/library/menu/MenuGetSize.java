@@ -1,5 +1,7 @@
 package com.solvd.library.menu;
 
+import com.solvd.library.cards.Card;
+
 import java.util.function.Supplier;
 
 import static com.solvd.library.storage.BooksFactory.getBooksCount;
@@ -13,10 +15,10 @@ import static com.solvd.library.storage.NewsFactory.getNewsNames;
 
 public class MenuGetSize {
 
-    public static void getSizeOfLibrary() {
+    public static void getSizeOfLibrary(Card card) {
         Supplier<Boolean> supplier = () -> {
             getBooksCount();
-            getBooksNames();
+            getBooksNames(card.getVisitor());
             getComicsCount();
             getComicsNames();
             getMagazinesCount();

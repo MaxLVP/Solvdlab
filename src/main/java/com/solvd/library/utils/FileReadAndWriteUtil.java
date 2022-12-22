@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class FileReadAndWriteUtil {
-    static final MyLogger logger = MyLogger.getInstance();
+    static final MyLogger LOGGER = MyLogger.getInstance();
     private static final HashMap<String, Integer> NUMBER_OF_WORDS = new HashMap<>();
 
     public static void countUniqueWordsInFile() {
@@ -28,7 +28,7 @@ public class FileReadAndWriteUtil {
             FileUtils.writeStringToFile(new File("src/main/resources/fileToWrite.txt"),
                     "Количество уникальных слов: " + words.size(), StandardCharsets.UTF_8);
         } catch (IOException ex) {
-            logger.warn(ex.getMessage());
+            LOGGER.warn(ex.getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ public class FileReadAndWriteUtil {
                         StandardCharsets.UTF_8, true);
             }
         } catch (IOException ex) {
-            logger.warn(ex.getMessage());
+            LOGGER.warn(ex.getMessage());
         }
     }
 }

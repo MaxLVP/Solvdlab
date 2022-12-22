@@ -1,18 +1,11 @@
 package com.solvd.library.others;
 
-import com.solvd.library.MyLogger;
 import com.solvd.library.books.Genre;
 
 
-public class Comics {
-    static final MyLogger logger = MyLogger.getInstance();
+public class Comics implements Comparable<Comics>{
     private String name;
     private Genre genre;
-
-    static {
-        String typeName = "Комикс";
-        logger.info("Получен " + typeName);
-    }
 
     public Comics(String name, Genre genre) {
         this.name = name;
@@ -39,5 +32,10 @@ public class Comics {
     public String toString() {
         return "Комикс '" + this.getName() + '\'' +
                 " жанр '" + genre.getGenre() + '\'';
+    }
+
+    @Override
+    public int compareTo(Comics comics) {
+        return this.genre.compareTo(comics.getGenre());
     }
 }
