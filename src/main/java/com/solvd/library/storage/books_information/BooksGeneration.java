@@ -13,7 +13,7 @@ public class BooksGeneration {
     private static final int END_PAGE = 1000;
 
     public static String returnNameOfRandomBook() {
-        List<String> names = Stream.of("1984", "Война и мир", "Человек-неведимка", "Звук и ярость", "Черный обелиск", "Гордость и предубеждение", "Унесенные ветром", "Три товарища", "Сто лет одиночества").toList();
+        List<String> names = Stream.of("1984", "Война и мир", "Человек-невидимка", "Звук и ярость", "Черный обелиск", "Гордость и предубеждение", "Унесенные ветром", "Три товарища", "Сто лет одиночества").toList();
         return returnRandomObjectFromList(names);
     }
 

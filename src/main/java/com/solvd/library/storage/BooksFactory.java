@@ -11,8 +11,7 @@ import java.util.*;
 import java.util.function.Function;
 
 import static com.solvd.library.utils.RandomUtils.returnRandomIntWithSize;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.*;
 
 public class BooksFactory {
     private final static ArrayList<Book> BOOK_LIST = new ArrayList<>();
@@ -70,7 +69,8 @@ public class BooksFactory {
     }
 
     public static void getAllBooks() {
-        Map<Genre, Set<Book>> allBooks = BOOK_LIST.stream().collect(groupingBy(Book::getGenre, toSet()));
+        Map<String, List<List<Object>>> allBooks = BOOK_LIST.stream().collect(groupingBy(book -> book.getGenre().getGenre(),
+                mapping(book -> Arrays.asList(book.getName(), book.getAuthor()), toList())));
         LOGGER.info(allBooks);
     }
 
