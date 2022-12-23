@@ -47,12 +47,12 @@ public class ComicsFactory {
         return comics.get(returnRandomIntWithSize(comics.size()));
     }
 
-    public static void getComicsNames() {
+    public static void printComicsNames() {
         List<String> comicsNames = COMICS.stream().map(comics -> StringUtils.capitalize(comics.getName())).toList();
         LOGGER.info("Комиксы : " + comicsNames);
     }
 
-    public static void getComicsCount() {
+    public static void printComicsCount() {
         IConvert<Integer, String> convert = Object::toString;
         LOGGER.info("Общее количество комиксов: " + convert.convert(COMICS.size()));
     }

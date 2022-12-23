@@ -30,13 +30,13 @@ public class MagazinesFactory {
         return magazineName.get();
     }
 
-    public static void getMagazinesNames() {
+    public static void printMagazinesNames() {
         List<String> magazinesNames = LIST.stream().map(magazine ->
                 new Magazine(StringUtils.upperCase(magazine.getName()), magazine.getTopic()).toString()).toList();
         LOGGER.info("Журналы: " + magazinesNames);
     }
 
-    public static void getMagazinesCount() {
+    public static void printMagazinesCount() {
         IConvert<Integer, String> convert = Object::toString;
         LOGGER.info("Количество журналов: " + convert.convert(LIST.size()));
     }

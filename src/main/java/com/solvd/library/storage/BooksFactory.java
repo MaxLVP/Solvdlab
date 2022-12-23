@@ -68,19 +68,19 @@ public class BooksFactory {
         return genreBooks.get(returnRandomIntWithSize(genreBooks.size()));
     }
 
-    public static void getAllBooks() {
+    public static void printAllBooks() {
         Map<String, List<List<Object>>> allBooks = BOOK_LIST.stream().collect(groupingBy(book -> book.getGenre().getGenre(),
                 mapping(book -> Arrays.asList(book.getName(), book.getAuthor()), toList())));
         LOGGER.info(allBooks);
     }
 
-    public static void getBooksNames(Visitor visitor) {
+    public static void printBooksNames(Visitor visitor) {
         List<ArrayList<String>> booksNames = BOOK_LIST.stream().filter(book -> book.getGenre().equals(visitor.getGenre()))
                 .map(book -> new ArrayList<>(Arrays.asList(StringUtils.capitalize(book.getName()), book.getAuthor()))).toList();
         LOGGER.info("Книги доступные по вашему жанру: " + booksNames);
     }
 
-    public static void getBooksCount() {
+    public static void printBooksCount() {
         Function<Integer, String> convert = String::valueOf;
         LOGGER.info("Общее количество книг: " + convert.apply(BOOK_LIST.size()));
     }

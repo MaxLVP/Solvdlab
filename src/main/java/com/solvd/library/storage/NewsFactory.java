@@ -23,12 +23,12 @@ public class NewsFactory {
         NEWS.add(newspaper);
     }
 
-    public static void getNewsNames() {
+    public static void printNewsNames() {
         List<Newspaper> newsNames = NEWS.stream().map(news -> new Newspaper(StringUtils.upperCase(news.getName()), news.getTopic())).toList();
         LOGGER.info("Газеты: " + newsNames);
     }
 
-    public static void getNewsCount() {
+    public static void printNewsCount() {
         IConvert<Integer, String> convert = Object::toString;
         LOGGER.info("Количество газет: " + convert.convert(NEWS.size()));
     }
